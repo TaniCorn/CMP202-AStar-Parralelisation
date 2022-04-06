@@ -1,92 +1,4 @@
-﻿  A_Star_Pathfinding.cpp
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(153,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(156,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(159,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(162,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(170,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(173,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_Pathfinding.cpp(26,53): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_Pathfinding.cpp(26,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_Pathfinding.cpp(163,53): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_Pathfinding.cpp(163,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(83,10): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(81): message : while compiling class template member function 'int Vector2<int>::DistanceBetween(const Vector2<int> &,const Vector2<int> &)'
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(105): message : see reference to function template instantiation 'int Vector2<int>::DistanceBetween(const Vector2<int> &,const Vector2<int> &)' being compiled
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(140): message : see reference to class template instantiation 'Vector2<int>' being compiled
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(71,10): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(69): message : while compiling class template member function 'int Vector2<int>::DistanceFrom(const Vector2<int> &)'
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(95): message : see reference to function template instantiation 'int Vector2<int>::DistanceFrom(const Vector2<int> &)' being compiled
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(64,42): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(64): message : while compiling class template member function 'int Vector2<int>::DistanceFrom(T,T)'
-          with
-          [
-              T=int
-          ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(89): message : see reference to function template instantiation 'int Vector2<int>::DistanceFrom(T,T)' being compiled
-          with
-          [
-              T=int
-          ]
-  Node.cpp
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(153,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(156,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(159,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(162,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(170,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(173,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(83,10): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(81): message : while compiling class template member function 'int Vector2<int>::DistanceBetween(const Vector2<int> &,const Vector2<int> &)'
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(105): message : see reference to function template instantiation 'int Vector2<int>::DistanceBetween(const Vector2<int> &,const Vector2<int> &)' being compiled
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(140): message : see reference to class template instantiation 'Vector2<int>' being compiled
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(71,10): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(69): message : while compiling class template member function 'int Vector2<int>::DistanceFrom(const Vector2<int> &)'
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(95): message : see reference to function template instantiation 'int Vector2<int>::DistanceFrom(const Vector2<int> &)' being compiled
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(64,42): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(64): message : while compiling class template member function 'int Vector2<int>::DistanceFrom(T,T)'
-          with
-          [
-              T=int
-          ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(89): message : see reference to function template instantiation 'int Vector2<int>::DistanceFrom(T,T)' being compiled
-          with
-          [
-              T=int
-          ]
-  PathfindingMap.cpp
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(153,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(156,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(159,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(162,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(170,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(173,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingMap.cpp(203,23): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(83,10): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(81): message : while compiling class template member function 'int Vector2<int>::DistanceBetween(const Vector2<int> &,const Vector2<int> &)'
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(105): message : see reference to function template instantiation 'int Vector2<int>::DistanceBetween(const Vector2<int> &,const Vector2<int> &)' being compiled
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(140): message : see reference to class template instantiation 'Vector2<int>' being compiled
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(71,10): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(69): message : while compiling class template member function 'int Vector2<int>::DistanceFrom(const Vector2<int> &)'
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(95): message : see reference to function template instantiation 'int Vector2<int>::DistanceFrom(const Vector2<int> &)' being compiled
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(64,42): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(64): message : while compiling class template member function 'int Vector2<int>::DistanceFrom(T,T)'
-          with
-          [
-              T=int
-          ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(89): message : see reference to function template instantiation 'int Vector2<int>::DistanceFrom(T,T)' being compiled
-          with
-          [
-              T=int
-          ]
-  Source.cpp
+﻿  Source.cpp
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(153,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(156,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(159,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
@@ -96,33 +8,6 @@ C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursewor
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\CustomLoader.h(146,52): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\CustomLoader.h(148,54): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\CustomLoader.h(149,39): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Source.cpp(361,30): warning C4244: 'argument': conversion from '_Rep' to '_Ty', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-          and
-          [
-              _Ty=float
-          ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Source.cpp(362,30): warning C4244: 'argument': conversion from '_Rep' to '_Ty', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-          and
-          [
-              _Ty=float
-          ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Source.cpp(363,30): warning C4244: 'argument': conversion from '_Rep' to '_Ty', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-          and
-          [
-              _Ty=float
-          ]
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(83,10): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\VectorPositions.h(81): message : while compiling class template member function 'int Vector2<int>::DistanceBetween(const Vector2<int> &,const Vector2<int> &)'
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(105): message : see reference to function template instantiation 'int Vector2<int>::DistanceBetween(const Vector2<int> &,const Vector2<int> &)' being compiled
@@ -141,7 +26,4 @@ C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursewor
           [
               T=int
           ]
-  VectorPositions.cpp
-  Generating Code...
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingMap.cpp(30): warning C4715: 'OppositeDirection': not all control paths return a value
   CMP202 AStar Parallelisation.vcxproj -> C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\x64\Debug\CMP202 AStar Parallelisation.exe
