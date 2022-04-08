@@ -30,6 +30,12 @@
     <ClCompile Include="VectorPositions.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="CellularAutomata.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomBase10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A_Star_Pathfinding.h">
@@ -46,6 +52,12 @@
     </ClInclude>
     <ClInclude Include="VectorPositions.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CellularAutomata.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomBase10.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

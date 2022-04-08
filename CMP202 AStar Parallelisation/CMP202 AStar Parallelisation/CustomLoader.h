@@ -191,7 +191,7 @@ void CompleteMapRead(Room& nm, std::string fileName) {
 
     //Apply it all
     nm.SetNodeSize(std::stoi(txtInfo[0]));
-    nm.SetObstacleLocations(obstacleLocations);
+   // nm.SetObstacleLocations(obstacleLocations);
     std::cout << std::endl;
     //int si = check.size();
     int is = xSize * ySize;
@@ -217,10 +217,10 @@ void DisplaceNodeMap(Room& nm, Vector2<int> direction) {
             nm.nodes[x][y].position += displacementAmount;
         }
     }
-    for (int i = 0; i < nm.obstacleLocations.size(); i++)
-    {
-        nm.obstacleLocations[i] += displacementAmount;
-    }
+   // for (int i = 0; i < nm.obstacleLocations.size(); i++)
+   // {
+    //    nm.obstacleLocations[i] += displacementAmount;
+  //  }
     nm.SetLowestCoord(nm.GetLowestCoord() + displacementAmount);
     nm.SetHighestCoord(nm.GetHighestCoord() + displacementAmount);
 }

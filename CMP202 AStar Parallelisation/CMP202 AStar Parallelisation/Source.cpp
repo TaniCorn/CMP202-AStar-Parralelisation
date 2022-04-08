@@ -1,5 +1,6 @@
 
 #include "CustomLoader.h"
+#include "CellularAutomata.h"
 #include <chrono>
 #include "SFML\Graphics.hpp"
 
@@ -21,15 +22,72 @@ void ResetRoomCalculations(Room* rm) {
         }
     }
 }
+
+void sfmlEvents(sf::RenderWindow* window) {
+	sf::Event event;
+	while (window->pollEvent(event))
+	{
+		switch (event.type)
+		{
+		case sf::Event::Closed:
+			window->close();
+			break;
+		case sf::Event::Resized:
+			window->setView(sf::View(sf::FloatRect(0.f, 0.f, (float)event.size.width, (float)event.size.height)));
+			break;
+		default:
+			// don't handle other events
+			break;
+		}
+	}
+}
 //TODO: There is currently no memory management, assume only one run is allowed
 int main() {
+    srand(time(0));
     sf::View view;
-    sf::RenderWindow window(sf::VideoMode(1200, 675), "CMP105_W1");
+    sf::RenderWindow window(sf::VideoMode(1600, 920), "A Star Visualisation");
 
-    
+#pragma region TESTINGCA
+    CellularAutomata ca;
+    ca.GenerateMap();
+
+    std::vector<sf::RectangleShape> rectCA;
+    for (int y = 0; y < ca.height; y++)
+    {
+        for (int x = 0; x < ca.width; x++)
+        {
+            if (ca.map[x][y] == 1)
+            {
+                rectCA.push_back(sf::RectangleShape());
+                rectCA.back().setSize(sf::Vector2f(1,1));
+                rectCA.back().setPosition(x * 1, y * 1);
+                //rectCA.back().setOutlineColor(sf::Color::Black);
+                //rectCA.back().setOutlineThickness(1);
+                rectCA.back().setFillColor(sf::Color::Red);
+
+            }else{
+                rectCA.push_back(sf::RectangleShape());
+                rectCA.back().setSize(sf::Vector2f(1, 1));
+                rectCA.back().setPosition(x * 1, y * 1);
+               // rectCA.back().setOutlineColor(sf::Color::Black);
+                //rectCA.back().setOutlineThickness(1);
+                rectCA.back().setFillColor(sf::Color::Blue);
+
+            }
+        }
+    }
+#pragma endregion
     while (window.isOpen())
     {
+        sfmlEvents(&window);
         window.setView(view);
+        
+        window.clear(sf::Color(255, 255, 255));
+        //Draw things here:
+        for (int i = 0; i < rectCA.size(); i++)
+        {
+            window.draw(rectCA[i]);
+        }
         window.display();
 
     }
