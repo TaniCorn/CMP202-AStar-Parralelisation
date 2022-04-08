@@ -97,6 +97,7 @@ void Base_A_Star_Pathfinding::PrintRoute()
 
 ///////Acknowledgment: The IsNodeInRoom functions are based on the CMP105 project - collision detection
 
+//Collision detection code for finding if node is within certain bounds
 bool Base_A_Star_Pathfinding::IsNodeInRoom(const RoomStruct& nm, const Node& target)
 {
 	if (nm.GetHighestCoord().x < target.position.x) { return false; }
@@ -107,6 +108,7 @@ bool Base_A_Star_Pathfinding::IsNodeInRoom(const RoomStruct& nm, const Node& tar
 	return true;
 }
 
+//Collision detection code for finding if position is within certain bounds
 bool Base_A_Star_Pathfinding::IsNodeInRoom(const RoomStruct& nm, const Vector2<int> position)
 {
 	if (nm.GetHighestCoord().x < position.x) { return false; }

@@ -49,7 +49,7 @@ public:
 	/// Constructor For Start and End Nodes
 	/// </summary>
 	Node() {
-		gCost = 0; nodeType = Free; parentNode = nullptr;
+		nodeType = Free; parentNode = nullptr;
 	}
 	/// <summary>
 	/// Constructor for new Nodes
@@ -78,6 +78,12 @@ public:
 	Node(const Node& a) { fCost = a.fCost; gCost = a.gCost; hCost = a.hCost; position = a.position; nodeType = a.nodeType; parentNode = a.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = a.neighbours[i]; }; }
 	Node& operator =(const Node& copy) { fCost = copy.fCost; gCost = copy.gCost; hCost = copy.hCost; position = copy.position; nodeType = copy.nodeType; parentNode = copy.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = copy.neighbours[i]; }; return *this; }
 
+	void SetNullNeighbours() {
+		for (int i = 0; i < 8; i++)
+		{
+			neighbours[i] = nullptr;
+		}
+	}
 #pragma endregion
 
 public:
@@ -133,15 +139,15 @@ public:
 
 #pragma region CHARACTERISTICS
 private:
-	float fCost;//totalCost
-	float gCost;//cost of current path
-	float hCost;//how far away we are from target Node
+	float fCost = -1;//totalCost
+	float gCost = -1;//cost of current path
+	float hCost = -1;//how far away we are from target Node
 public:
 	Vector2<int> position = Vector2<int>(0, 0);//Our position, it's unique
 
 
 	Node* neighbours[8];//Surrounding nodes
-	Node* parentNode;//Node that this node branched from
+	Node* parentNode = nullptr;//Node that this node branched from
 	//bool closed = false;//Is this closed? We could either check if this position exists in closed or just do this.
 
 	NodeType nodeType;//Is this an obstacle? If so we can't pass through it
