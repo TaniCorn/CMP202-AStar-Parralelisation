@@ -143,40 +143,6 @@ public:
 	void PrintRoute();
 };
 
-/// <summary>
-/// This algorithm will allow duplicate node checks however it should avoid the issue of having to check open and closed nodes and compare it to the newly made nodes on a unknown mapping(no predetermined grid that is generated)
-/// <para>This Algorithm will search an undefined area. Because of this there are inefficiencies as one would have to expect, as there is a chance it will generate nodes that have already been generated, instead of recalculating them
-/// ,however this has to be done because we don't keep unique nodes, this way we don't need to needlessly search open and closed nodes that are no where near our path.</para>
-/// <para>Theory: This version would work best with straighforward paths, and very far away targets. The target moving does not hold much difference, as no matter what version, a moving target will always be costly. The more complex the path, the worse it will get, I predict it will be the worst of all if there is complex obstacles as we will be making multiple paths, possibly hundreds</para>
-/// </summary>
-class A_Star_Pathfinding_Undefined : public Base_A_Star_Pathfinding
-{
-public:
-	std::priority_queue<Node*, std::vector<Node*>, PriorityComparator> toSearch;
-
-private:
-	void AStarAlgorithm() override;
-	void SetUpStartAndEndNodes(Vector2<int> startPos, Vector2<int> endPos) override;
-	void CheckNeighbours(Node* node);
-
-};
-
-/// <summary>
-/// As normal as A star gets, this is the normal version that most taught a star versions use.
-/// </summary>
-class A_Star_Pathfinding_Defined : public Base_A_Star_Pathfinding {
-public:
-	A_Star_Pathfinding_Defined() {};
-	~A_Star_Pathfinding_Defined() {
-	};
-	std::set<Node*> openSet;
-	std::set<Node*> closedSet;
-
-private:
-	void AStarAlgorithm() override;
-	void CheckNeighbours(Node* node);
-};
-
 //Todo: The segmented functions provide a much better base and maybe should be used instead?
 
 /// <summary>

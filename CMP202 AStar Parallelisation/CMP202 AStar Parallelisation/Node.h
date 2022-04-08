@@ -46,8 +46,8 @@ class Node {
 public:
 #pragma region CONSTRUCTORS
 	/// <summary>
-/// Constructor For Start and End Nodes
-/// </summary>
+	/// Constructor For Start and End Nodes
+	/// </summary>
 	Node() {
 		gCost = 0; nodeType = Free; parentNode = nullptr;
 	}
@@ -179,25 +179,6 @@ public:
 		return parentNode;
 	}
 #pragma endregion
-
-#pragma region UNDEFINED_VARIANT
-	public:
-		/// <summary>
-	/// Generate all neighbours
-	/// </summary>
-		void GenerateNeighbours(int nodeSize) {
-			Generate4Neighbours(nodeSize);
-		};
-		void CalculateNodeType(const std::vector<Vector2<int>>& obsMap, int nodeSize);
-
-private:
-	/// <summary>
-/// Generates neighbours in 4 direcions (NESW)
-/// </summary>
-	void Generate4Neighbours(int nodeSize);
-#pragma endregion
-
-
 
 };
 

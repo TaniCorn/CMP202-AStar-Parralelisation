@@ -1,6 +1,6 @@
 
 //////////
-//////////Pathfinding Map files // PathfindingMap.h required
+//////////Pathfinding Map files
 //////////Written by Tanapat Somrid 
 /////////Starting 18/12/2021
 //////// Most Recent Update 06/01/2022
