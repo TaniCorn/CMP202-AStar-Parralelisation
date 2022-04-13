@@ -3,8 +3,9 @@
 /// <summary>
     /// Generates an 2d array of width and height that has on and off cells .Calls RandomFillMap().ref.MapGenerator and SmoothingMap().ref.MapGenerator. 
     /// </summary>
-void CellularAutomata::GenerateMap()
+void CellularAutomata::GenerateMap(int xDimension, int yDimension)
 {
+    width = xDimension; height = yDimension;
     int** tempMap = new int* [width];
     for (int i = 0; i < height; i++)
     {

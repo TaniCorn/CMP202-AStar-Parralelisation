@@ -1,5 +1,5 @@
 #include "RandomBase10.h"
-
+#include <thread>
 int RandomBase10::LongRandomNumber()
 {
 	int randomSeed = rand() % 10000 + 1000;
@@ -56,10 +56,10 @@ std::vector<int> RandomBase10::EngineRandomSequence()
 
 	int randomNumber = randomDistributer(gen);
 	std::vector<int> sequence;
-	sequence.push_back((randomNumber / 1000) % 10);
-	sequence.push_back((randomNumber / 100) % 10);
-	sequence.push_back((randomNumber /10) %10);
-	sequence.push_back((randomNumber % 10));
+	sequence.push_back(((randomNumber / 1000) % 10)*10);
+	sequence.push_back(((randomNumber / 100) % 10)*10);
+	sequence.push_back(((randomNumber /10) %10)*10);
+	sequence.push_back(((randomNumber % 10))*10);
 	return sequence;
 }
 

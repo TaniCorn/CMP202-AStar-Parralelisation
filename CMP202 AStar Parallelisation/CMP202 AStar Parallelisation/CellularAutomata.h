@@ -15,12 +15,19 @@
 class CellularAutomata
 {
 public:
-	const int width = 1000;
-	const int height = 1000;
+	CellularAutomata() {};
+	~CellularAutomata() {
+		for (int i = 0; i < width - 1; ++i)
+		{
+			delete[] map[i];
+		}
+	};
+	int width = 100;
+	int height = 100;
 	int** map;
 	int randomFillPercent = 45;
-	int mapSmoothing = 3;
-	void GenerateMap();
+	int mapSmoothing = 5;
+	void GenerateMap(int xDimension, int yDimension);
 	void RandomFillMap();
 	void SmoothingMap();
 	int GetSurroundingWallCount(int gridX, int gridY);

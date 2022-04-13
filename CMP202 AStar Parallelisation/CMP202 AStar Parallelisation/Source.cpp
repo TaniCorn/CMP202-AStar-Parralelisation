@@ -1,6 +1,7 @@
 
 #include "CustomLoader.h"
-#include "CellularAutomata.h"
+#include "ProceduralMapManager.h"
+#include "Input.h"
 #include <chrono>
 #include "SFML\Graphics.hpp"
 
@@ -23,7 +24,7 @@ void ResetRoomCalculations(Room* rm) {
     }
 }
 
-void sfmlEvents(sf::RenderWindow* window) {
+void sfmlEvents(sf::RenderWindow* window, Input* in) {
 	sf::Event event;
 	while (window->pollEvent(event))
 	{
@@ -35,60 +36,179 @@ void sfmlEvents(sf::RenderWindow* window) {
 		case sf::Event::Resized:
 			window->setView(sf::View(sf::FloatRect(0.f, 0.f, (float)event.size.width, (float)event.size.height)));
 			break;
+        case sf::Event::KeyPressed:
+            // update input class
+            in->setKeyDown(event.key.code);
+            break;
+        case sf::Event::KeyReleased:
+            //update input class
+            in->setKeyUp(event.key.code);
+            break;
+        case sf::Event::MouseMoved:
+            //update input class
+            in->setMousePosition(event.mouseMove.x, event.mouseMove.y);
+            break;
+        case sf::Event::MouseButtonPressed:
+            if (event.mouseButton.button == sf::Mouse::Left)
+            {
+                //update input class
+                in->setLeftMouse(Input::MouseState::DOWN);
+            }
+            else if (event.mouseButton.button == sf::Mouse::Right)
+            {
+                in->setRightMouse(Input::MouseState::DOWN);
+            }
+            break;
+        case sf::Event::MouseButtonReleased:
+            if (event.mouseButton.button == sf::Mouse::Left)
+            {
+                //update input class
+                in->setLeftMouse(Input::MouseState::UP);
+            }
+            else if (event.mouseButton.button == sf::Mouse::Right)
+            {
+                in->setRightMouse(Input::MouseState::UP);
+            }
 		default:
 			// don't handle other events
 			break;
 		}
 	}
 }
+
+void UpdateObjects(Vector2<int> mapArray, ProceduralMapManager* pmm, std::vector<sf::RectangleShape>* drawableShapes) {
+    int i = 0;
+    Room* roomToRender = &pmm->roomsInMap[mapArray.x][mapArray.y];
+
+    sf::Vector2f positionStart = sf::Vector2f(roomToRender->GetLowestCoord().x, roomToRender->GetLowestCoord().y);
+    for (int x = 0; x < roomToRender->GetXSize(); x++)
+    {
+        for (int y = 0; y < roomToRender->GetYSize(); y++)
+        {
+            if (roomToRender->nodes[x][y].nodeType == Free)
+            {
+                drawableShapes->at(i).setFillColor(sf::Color::Blue);
+            }
+            else {
+                drawableShapes->at(i).setFillColor(sf::Color::Red);
+            }
+            drawableShapes->at(i).setPosition((positionStart.x * 10) + (x * 10), (10 * positionStart.y) + (y * 10));
+            i++;
+
+        }
+    }
+}
 //TODO: There is currently no memory management, assume only one run is allowed
 int main() {
     srand(time(0));
     sf::View view;
     sf::RenderWindow window(sf::VideoMode(1600, 920), "A Star Visualisation");
+    Input* input;
+    input = new Input();
 
 #pragma region TESTINGCA
-    CellularAutomata ca;
-    ca.GenerateMap();
+    //CellularAutomata ca;
+    //ca.GenerateMap();
 
-    std::vector<sf::RectangleShape> rectCA;
-    for (int y = 0; y < ca.height; y++)
-    {
-        for (int x = 0; x < ca.width; x++)
-        {
-            if (ca.map[x][y] == 1)
-            {
-                rectCA.push_back(sf::RectangleShape());
-                rectCA.back().setSize(sf::Vector2f(1,1));
-                rectCA.back().setPosition(x * 1, y * 1);
-                //rectCA.back().setOutlineColor(sf::Color::Black);
-                //rectCA.back().setOutlineThickness(1);
-                rectCA.back().setFillColor(sf::Color::Red);
+    //size 10 = position * 10
+    // size 1 = position * 1
+    //std::vector<sf::RectangleShape> rectCA;
+    //for (int y = 0; y < ca.height; y++)
+    //{
+    //    for (int x = 0; x < ca.width; x++)
+    //    {
+    //        if (ca.map[x][y] == 1)
+    //        {
+    //            rectCA.push_back(sf::RectangleShape());
+    //            rectCA.back().setSize(sf::Vector2f(10,10));
+    //            rectCA.back().setPosition(x * 10, y * 10);
+    //            //rectCA.back().setOutlineColor(sf::Color::Black);
+    //            //rectCA.back().setOutlineThickness(1);
+    //            rectCA.back().setFillColor(sf::Color::Red);
 
-            }else{
-                rectCA.push_back(sf::RectangleShape());
-                rectCA.back().setSize(sf::Vector2f(1, 1));
-                rectCA.back().setPosition(x * 1, y * 1);
-               // rectCA.back().setOutlineColor(sf::Color::Black);
-                //rectCA.back().setOutlineThickness(1);
-                rectCA.back().setFillColor(sf::Color::Blue);
+    //        }else{
+    //            rectCA.push_back(sf::RectangleShape());
+    //            rectCA.back().setSize(sf::Vector2f(10, 10));
+    //            rectCA.back().setPosition(x * 10, y * 10);
+    //           // rectCA.back().setOutlineColor(sf::Color::Black);
+    //            //rectCA.back().setOutlineThickness(1);
+    //            rectCA.back().setFillColor(sf::Color::Blue);
 
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 #pragma endregion
+
+#pragma region TESTINGPMM
+    ProceduralMapManager pmm;
+    pmm.Init(200, 200, 100, 100);
+    pmm.GenerateMapGrid();
+
+    std::vector<sf::RectangleShape> rectDraw;
+    for (int i = 0; i < 10000; i++)
+    {
+            rectDraw.push_back(sf::RectangleShape());
+            rectDraw.back().setSize(sf::Vector2f(10,10));
+            rectDraw.back().setOutlineColor(sf::Color::Black);
+            rectDraw.back().setOutlineThickness(1);
+            rectDraw.back().setFillColor(sf::Color::Red);
+            
+            //rectFree.push_back(sf::RectangleShape());
+            //rectFree.back().setSize(sf::Vector2f(10,10));
+            //rectFree.back().setOutlineColor(sf::Color::Black);
+            //rectFree.back().setOutlineThickness(1);
+            //rectFree.back().setFillColor(sf::Color::Blue);
+    }
+    UpdateObjects(Vector2<int>(0, 0), &pmm, &rectDraw);
+    Vector2<int> position = Vector2<int>(0, 0);
+    sf::Vector2f viewCenter = view.getCenter();
+    sf::Vector2f addViewCenter;
+#pragma endregion
+
     while (window.isOpen())
     {
-        sfmlEvents(&window);
+        sfmlEvents(&window, input);
         window.setView(view);
-        
-        window.clear(sf::Color(255, 255, 255));
-        //Draw things here:
-        for (int i = 0; i < rectCA.size(); i++)
+
+        addViewCenter = sf::Vector2f(0, 0);
+        input->update();
+        if (input->isPressed(sf::Keyboard::Right))
         {
-            window.draw(rectCA[i]);
+            //view.setCenter(view.getCenter() + sf::Vector2f(1000, 0));
+            addViewCenter = sf::Vector2f(1000, 0);
+            position.x = position.x + 1;
+            UpdateObjects(position, &pmm, &rectDraw);
+        }       
+        if (input->isPressed(sf::Keyboard::Left))
+        {
+            //view.setCenter(view.getCenter() + sf::Vector2f(-1000, 0));
+            addViewCenter = sf::Vector2f(-1000, 0);
+            position.x = position.x - 1;
+            UpdateObjects(position, &pmm, &rectDraw);
+        }
+        if (input->isPressed(sf::Keyboard::Down))
+        {
+            //view.setCenter(view.getCenter() + sf::Vector2f(0, 1000));
+            addViewCenter = sf::Vector2f(0, 1000);
+            position.y = position.y + 1;
+            UpdateObjects(position, &pmm, &rectDraw);
+        }
+        if (input->isPressed(sf::Keyboard::Up))
+        {
+            //view.setCenter(view.getCenter() + sf::Vector2f(0, -1000));
+            addViewCenter = sf::Vector2f(0, -1000);
+            position.y = position.y - 1;
+            UpdateObjects(position, &pmm, &rectDraw);
+        }
+        viewCenter += addViewCenter;
+        window.clear(sf::Color(0, 0, 0));
+        //Draw things here:
+        for (int i = 0; i < rectDraw.size(); i++)
+        {
+            window.draw(rectDraw[i]);
         }
         window.display();
+        view.setCenter(viewCenter);
 
     }
     return 0;
