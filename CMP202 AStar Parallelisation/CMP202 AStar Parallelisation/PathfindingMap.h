@@ -1,10 +1,10 @@
 
 //////////
-//////////Pathfinding Map filesDEXDXE
+//////////Pathfinding Map files
 //////////Written by Tanapat Somrid 
 /////////Starting 18/12/2021
-//////// Most Recent Update 06/01/2022
-//////// Most Recent change: Quick Fix of some linking issues, neighbour and route issues
+//////// Most Recent Update 13/01/2022
+//////// Most Recent change: Added Generate Automata Map Function to Room
 #pragma once
 #ifndef PATHFINDINGMAP_H
 #define PATHFINDINGMAP_H

@@ -5,8 +5,9 @@
 
 void ProceduralMapManager::GenerateMapGrid()
 {
-	int	roomXAmount = xDimension / xRoomDimension;
-	int roomYAmount = yDimension / yRoomDimension;
+	int	roomXAmount = xDimension;//In case I want to change it...
+	int roomYAmount = yDimension;
+
 	//Create Rooms for map
 	Room** f = new Room * [roomXAmount];
 	for (int i = 0; i < roomXAmount; i++)
@@ -30,6 +31,8 @@ void ProceduralMapManager::GenerateMapGrid()
 	//		roomsInMap[x][y].GenerateAutomataMap(Vector2<int>(xRoomDimension, yRoomDimension), Vector2<int>(x * xRoomDimension, y * yRoomDimension));
 	//	}
 	//}
+	
+	//Parallel generation of rooms in map
 	for (int i = 0; i < 4; i++)
 	{
 		threads.push_back(std::thread([&]() {

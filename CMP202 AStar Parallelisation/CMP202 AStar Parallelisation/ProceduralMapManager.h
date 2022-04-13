@@ -1,3 +1,11 @@
+
+
+//////////
+//////////Procedural Map Manager files
+//////////Written by Tanapat Somrid 
+/////////Starting 11/04/2022
+//////// Most Recent Update 13/04/2022
+//////// Most Recent change: Changed xDimension to reflect number of rooms rather than span of total nodes
 #pragma once
 
 #ifndef PROCEDURALMAPMANAGER_H

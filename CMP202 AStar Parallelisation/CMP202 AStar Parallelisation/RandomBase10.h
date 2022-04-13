@@ -2,8 +2,8 @@
 //////////RandomBase10.h
 //////////Written by Tanapat Somrid 
 /////////Imported from CMP208 project
-//////// Most Recent Update: 08/04/22
-//////// Most Recent change: Added parameters to the EngineRandomNumber and QuickRandomNumber. And also found out my EngineRandomNumber kinda sucks :(
+//////// Most Recent Update: 13/04/22
+//////// Most Recent change: Ignore last comment, unknown why I removed the random device function for EngineRandomNumber. That is now back and EngineRandomNumber works as intended and is thread safe. Also now has default parameters for the sequence generators.
 
 #pragma once
 #ifndef RANDOMBASE10_H
@@ -20,10 +20,24 @@ public:
 
 	static int LongRandomNumber();//Uses rand and hash
 	static std::vector<int> LongRandomSequence();//Uses rand and hash
+	/// <summary>
+	/// Fast random number generator. NOT THREAD SAFE
+	/// </summary>
 	static int QuickRandomNumber(int lowerBound, int upperBound);//Uses rand
-	static std::vector<int> QuickRandomSequence();//Uses rand
+	/// <summary>
+	/// Fast random sequence generator. NOT THREAD SAFE
+	/// <para>Currently only tested with values between 1000 and 9999</para>
+	/// </summary>
+	static std::vector<int> QuickRandomSequence(int lowerBound = 1000, int upperBound = 9999);//Uses rand
+	/// <summary>
+	/// Thread safe random number generator
+	/// </summary>
 	static int EngineRandomNumber(int lowerBound, int upperBound);// uses mt19937 and uniform distribution
-	static std::vector<int> EngineRandomSequence();// uses mt19937 and uniform distribution
+	/// <summary>
+	/// Thread safe random sequence generator
+	///<para>Currently only tested with values between 1000 and 9999</para>
+	/// </summary>
+	static std::vector<int> EngineRandomSequence(int lowerBound = 1000, int upperBound = 9999);// uses mt19937 and uniform distribution
 };
 
 #endif // !RANDOMBASE10_H

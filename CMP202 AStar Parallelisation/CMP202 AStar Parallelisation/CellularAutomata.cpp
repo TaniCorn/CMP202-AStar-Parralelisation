@@ -38,7 +38,7 @@ void CellularAutomata::RandomFillMap()
             }
             else
             {
-                map[x][y] = (RandomBase10::QuickRandomNumber(0, 100) < randomFillPercent) ? 1 : 0;
+                map[x][y] = (RandomBase10::EngineRandomNumber(0, 100) < randomFillPercent) ? 1 : 0;
             }
         }
     }

@@ -141,7 +141,7 @@ int main() {
 
 #pragma region TESTINGPMM
     ProceduralMapManager pmm;
-    pmm.Init(200, 200, 100, 100);
+    pmm.Init(2, 2, 100, 100);
     pmm.GenerateMapGrid();
 
     std::vector<sf::RectangleShape> rectDraw;
@@ -174,31 +174,43 @@ int main() {
         input->update();
         if (input->isPressed(sf::Keyboard::Right))
         {
-            //view.setCenter(view.getCenter() + sf::Vector2f(1000, 0));
-            addViewCenter = sf::Vector2f(1000, 0);
-            position.x = position.x + 1;
-            UpdateObjects(position, &pmm, &rectDraw);
+            if (position.x != pmm.xDimension - 1)
+            {
+                addViewCenter = sf::Vector2f(1000, 0);
+                position.x = position.x + 1;
+                UpdateObjects(position, &pmm, &rectDraw);
+            }
+
         }       
         if (input->isPressed(sf::Keyboard::Left))
         {
-            //view.setCenter(view.getCenter() + sf::Vector2f(-1000, 0));
-            addViewCenter = sf::Vector2f(-1000, 0);
-            position.x = position.x - 1;
-            UpdateObjects(position, &pmm, &rectDraw);
+            if (position.x != 0)
+            {
+                addViewCenter = sf::Vector2f(-1000, 0);
+                position.x = position.x - 1;
+                UpdateObjects(position, &pmm, &rectDraw);
+            }
+
         }
         if (input->isPressed(sf::Keyboard::Down))
         {
-            //view.setCenter(view.getCenter() + sf::Vector2f(0, 1000));
-            addViewCenter = sf::Vector2f(0, 1000);
-            position.y = position.y + 1;
-            UpdateObjects(position, &pmm, &rectDraw);
+            if (position.y != pmm.yDimension - 1)
+            {
+                addViewCenter = sf::Vector2f(0, 1000);
+                position.y = position.y + 1;
+                UpdateObjects(position, &pmm, &rectDraw);
+            }
+
         }
         if (input->isPressed(sf::Keyboard::Up))
         {
-            //view.setCenter(view.getCenter() + sf::Vector2f(0, -1000));
-            addViewCenter = sf::Vector2f(0, -1000);
-            position.y = position.y - 1;
-            UpdateObjects(position, &pmm, &rectDraw);
+            if (position.y != 0)
+            {
+                addViewCenter = sf::Vector2f(0, -1000);
+                position.y = position.y - 1;
+                UpdateObjects(position, &pmm, &rectDraw);
+            }
+
         }
         viewCenter += addViewCenter;
         window.clear(sf::Color(0, 0, 0));

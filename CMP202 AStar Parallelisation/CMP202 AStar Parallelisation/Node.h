@@ -2,8 +2,8 @@
 //////////Node Map files
 //////////Written by Tanapat Somrid 
 /////////Starting 08/12/2021
-//////// Most Recent Update 06/01/2022
-//////// Most Recent change: Added empty destructor
+//////// Most Recent Update 12/04/2022
+//////// Most Recent change: Got rid of bloat
 
 
 #pragma once

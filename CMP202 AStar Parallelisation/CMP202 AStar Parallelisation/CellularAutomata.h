@@ -2,8 +2,8 @@
 //////////CellularAutomata.h
 //////////Written by Tanapat Somrid 
 /////////Imported from a previous C# project 'Treasure Hunters', Massive thanks to Sebastian Lague's video 'https://www.youtube.com/watch?v=v7yyZZjF1z4'
-//////// Most Recent Update 08/04/22
-//////// Most Recent change: Changing source code from C# to C++, incorporating my RandomBase10 class
+//////// Most Recent Update 13/04/22
+//////// Most Recent change: Changed the random function to use Engine
 
 #pragma once
 #ifndef CELLULARAUTOMATA_H
