@@ -36,6 +36,12 @@
     <ClCompile Include="RandomBase10.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ProceduralMapManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="A_Star_Pathfinding.h">
@@ -58,6 +64,12 @@
     </ClInclude>
     <ClInclude Include="RandomBase10.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProceduralMapManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

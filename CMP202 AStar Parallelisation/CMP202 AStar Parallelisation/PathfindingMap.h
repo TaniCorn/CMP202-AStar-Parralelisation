@@ -11,6 +11,7 @@
 
 #include "Node.h"
 #include <set>
+#include "CellularAutomata.h"
 
 /// <summary>
 /// Contains all the information of a node room. Can also be acted upon by a pathfinding algorithm as it has neighbouring rooms and a parent room for paths.
@@ -85,6 +86,8 @@ public:
 
 	void AutoDualLinkRouteNodes();
 	void DualLinkRouteNodes(Node& node1, Node& node2);
+
+	void GenerateAutomataMap(Vector2<int> dimensions, Vector2<int> topLeftCornerPosition);
 };
 class Map {
 public:

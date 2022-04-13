@@ -294,6 +294,36 @@ void Room::DualLinkRouteNodes(Node& node1, Node& node2)
 
 }
 
+void Room::GenerateAutomataMap(Vector2<int> dimensions, Vector2<int> topLeftCornerPosition)
+{
+	lowestCoord = topLeftCornerPosition;
+	highestCoord = topLeftCornerPosition + dimensions;
+	xSize = dimensions.x; ySize = dimensions.y;
+
+	//Generate Cellular Automata Map
+	CellularAutomata caMap;
+	caMap.GenerateMap(dimensions.x, dimensions.y);
+
+	//Create Nodes for map
+	Node** f = new Node * [dimensions.x];
+	for (int i = 0; i < dimensions.x; i++)
+	{
+		f[i] = new Node[dimensions.y];
+	}
+	nodes = f;
+
+	//Translate CA map into Node Map
+	for (int x = 0; x < dimensions.x; x++)
+	{
+		for (int y = 0; y < dimensions.y; y++)
+		{
+			f[x][y].position = Vector2<int>(x + topLeftCornerPosition.x, y + topLeftCornerPosition.y);//1 is a wall node
+			f[x][y].nodeType = NodeType(caMap.map[x][y]);
+
+		}
+	}
+}
+
 void Room::LinkRouteNodes(Node& node1, Node& node2, int neighbourNode1)
 {
 	node1.neighbours[neighbourNode1] = &node2;
