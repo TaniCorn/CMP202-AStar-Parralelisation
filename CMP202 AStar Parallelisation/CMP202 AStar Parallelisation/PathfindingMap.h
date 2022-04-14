@@ -3,8 +3,8 @@
 //////////Pathfinding Map files
 //////////Written by Tanapat Somrid 
 /////////Starting 18/12/2021
-//////// Most Recent Update 13/01/2022
-//////// Most Recent change: Added Generate Automata Map Function to Room
+//////// Most Recent Update 14/01/2022
+//////// Most Recent change: Added 'AddRouteNode' - Adds a route node on a location and surrounds itself with free nodes. 'DualLinkRouteNode' - Takes in TeleportNodes and sets their teleport variable to each other
 #pragma once
 #ifndef PATHFINDINGMAP_H
 #define PATHFINDINGMAP_H
@@ -86,8 +86,17 @@ public:
 
 	void AutoDualLinkRouteNodes();
 	void DualLinkRouteNodes(Node& node1, Node& node2);
+	void DualLinkRouteNodes(TeleportNode* node1, TeleportNode* node2);
 
-	void GenerateAutomataMap(Vector2<int> dimensions, Vector2<int> topLeftCornerPosition);
+	/// <summary>
+	/// Generates a map using CellularAutomata.h - assigns base information to this.
+	/// </summary>
+	/// <param name="dimensions"></param>
+	/// <param name="topLeftCornerPosition"></param>
+	void GenerateAutomataRoom(Vector2<int> dimensions, Vector2<int> topLeftCornerPosition);
+
+	void AddRouteNode(Vector2<int> location);
+	TeleportNode* AddRouteNode(int locationX, int locationY);
 };
 class Map {
 public:

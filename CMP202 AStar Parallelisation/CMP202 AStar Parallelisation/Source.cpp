@@ -89,8 +89,11 @@ void UpdateObjects(Vector2<int> mapArray, ProceduralMapManager* pmm, std::vector
             {
                 drawableShapes->at(i).setFillColor(sf::Color::Blue);
             }
-            else {
+            else if (roomToRender->nodes[x][y].nodeType == Obstacle) {
                 drawableShapes->at(i).setFillColor(sf::Color::Red);
+            }
+            else {
+                drawableShapes->at(i).setFillColor(sf::Color::Yellow);
             }
             drawableShapes->at(i).setPosition((positionStart.x * 10) + (x * 10), (10 * positionStart.y) + (y * 10));
             i++;
@@ -141,8 +144,9 @@ int main() {
 
 #pragma region TESTINGPMM
     ProceduralMapManager pmm;
-    pmm.Init(2, 2, 100, 100);
+    pmm.Init(5, 5, 100, 100);
     pmm.GenerateMapGrid();
+    pmm.ConnectRooms();
 
     std::vector<sf::RectangleShape> rectDraw;
     for (int i = 0; i < 10000; i++)

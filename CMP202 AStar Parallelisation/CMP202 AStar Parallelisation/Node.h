@@ -2,8 +2,9 @@
 //////////Node Map files
 //////////Written by Tanapat Somrid 
 /////////Starting 08/12/2021
-//////// Most Recent Update 12/04/2022
-//////// Most Recent change: Got rid of bloat
+//////// Most Recent Update 14/04/2022
+//////// Most Recent change: Added TeleportNode. This will allow route nodes to still be traversable in all directions, but agents will have the option to travel throught it.
+//TODO: There is now a lot of unnecessary functions that was used before and no longer used. When finished, consider cleaning it.
 
 
 #pragma once
@@ -46,10 +47,9 @@ class Node {
 public:
 #pragma region CONSTRUCTORS
 	/// <summary>
-	/// Constructor For Start and End Nodes
+	/// Defualt Constructor
 	/// </summary>
 	Node() {
-		nodeType = Free; parentNode = nullptr;
 	}
 	/// <summary>
 	/// Constructor for new Nodes
@@ -138,7 +138,7 @@ public:
 
 
 #pragma region CHARACTERISTICS
-private:
+protected:
 	float fCost = -1;//totalCost
 	float gCost = -1;//cost of current path
 	float hCost = -1;//how far away we are from target Node
@@ -188,4 +188,18 @@ public:
 
 };
 
+class TeleportNode : public Node {
+public:
+	Node* nodeToTeleportTo;
+	TeleportNode() { nodeType = Routes; };
+	//Unsure if we currently need to transfer any other data than position
+	//TeleportNode(const Node& a) {  fCost = a.GetFCost(); gCost = a.GetGCost(); hCost = a.GetHCost(); position = a.position; parentNode = a.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = a.neighbours[i]; }; }
+	//TeleportNode(const TeleportNode& a) {  fCost = a.GetFCost(); gCost = a.GetGCost(); hCost = a.GetHCost(); position = a.position; parentNode = a.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = a.neighbours[i]; }; }
+	//TeleportNode& operator =(const Node& copy) { fCost = copy.GetFCost(); gCost = copy.GetGCost(); hCost = copy.GetHCost(); position = copy.position;parentNode = copy.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = copy.neighbours[i]; }; return *this; }
+	//TeleportNode& operator =(const TeleportNode& copy) { fCost = copy.GetFCost(); gCost = copy.GetGCost(); hCost = copy.GetHCost(); position = copy.position; parentNode = copy.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = copy.neighbours[i]; }; return *this; }	
+	TeleportNode(const Node& a) {  position = a.position; }
+	TeleportNode(const TeleportNode& a) { position = a.position; }
+	TeleportNode& operator =(const Node& copy) { position = copy.position; return *this; }
+	TeleportNode& operator =(const TeleportNode& copy) { position = copy.position; return *this; }
+};
 #endif // !NODEMAP_H

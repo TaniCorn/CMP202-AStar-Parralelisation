@@ -13,63 +13,72 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Pathfinding">
+      <UniqueIdentifier>{a4cf2b86-ec92-4319-8715-429d90d1d719}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\MapGeneration">
+      <UniqueIdentifier>{ed3c3c5b-1168-4538-a86c-90912eddba1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helper">
+      <UniqueIdentifier>{9282bbbb-861f-4c89-b929-f12cf9ed38fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="A_Star_Pathfinding.cpp">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Pathfinding</Filter>
     </ClCompile>
     <ClCompile Include="Node.cpp">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Pathfinding</Filter>
     </ClCompile>
     <ClCompile Include="PathfindingMap.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VectorPositions.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CellularAutomata.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RandomBase10.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Pathfinding</Filter>
     </ClCompile>
     <ClCompile Include="ProceduralMapManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="CellularAutomata.cpp">
+      <Filter>Source Files\MapGeneration</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomBase10.cpp">
+      <Filter>Source Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorPositions.cpp">
+      <Filter>Source Files\Helper</Filter>
     </ClCompile>
     <ClCompile Include="Input.cpp">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="A_Star_Pathfinding.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CustomLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="A_Star_Pathfinding.h">
+      <Filter>Source Files\Pathfinding</Filter>
+    </ClInclude>
     <ClInclude Include="Node.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="PathfindingMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VectorPositions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CellularAutomata.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RandomBase10.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="ProceduralMapManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="CellularAutomata.h">
+      <Filter>Source Files\MapGeneration</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomBase10.h">
+      <Filter>Source Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorPositions.h">
+      <Filter>Source Files\Helper</Filter>
     </ClInclude>
     <ClInclude Include="Input.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Helper</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

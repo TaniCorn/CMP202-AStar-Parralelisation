@@ -29,7 +29,7 @@ int RandomBase10::QuickRandomNumber(int lb, int ub)
 	return randomNumber;
 }
 
-std::vector<int> RandomBase10::QuickRandomSequence(int lb = 1000, int ub = 9999)
+std::vector<int> RandomBase10::QuickRandomSequence(int lb, int ub)
 {
 	int randomNumber = QuickRandomNumber(lb, ub);
 	std::vector<int> sequence;
@@ -50,7 +50,7 @@ int RandomBase10::EngineRandomNumber(int lb, int ub)
 	return randomDistributer(gen);
 }
 
-std::vector<int> RandomBase10::EngineRandomSequence(int lb = 1000, int ub = 9999)
+std::vector<int> RandomBase10::EngineRandomSequence(int lb, int ub)
 {
 	int randomNumber = EngineRandomNumber(lb, ub);
 

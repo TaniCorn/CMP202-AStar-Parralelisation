@@ -4,8 +4,8 @@
 //////////Procedural Map Manager files
 //////////Written by Tanapat Somrid 
 /////////Starting 11/04/2022
-//////// Most Recent Update 13/04/2022
-//////// Most Recent change: Changed xDimension to reflect number of rooms rather than span of total nodes
+//////// Most Recent Update 14/04/2022
+//////// Most Recent change: Made a ConnectRoom function - It will connect all rooms except for the bottom right corner. It will also ensure the routeNodes can be reached provided 'failsafe' = true
 #pragma once
 
 #ifndef PROCEDURALMAPMANAGER_H
@@ -27,11 +27,14 @@ public:
 		}
 		delete[] roomsInMap;
 	};
-
+	bool failsafe = true;
 	Room** roomsInMap;
 
 	void Init(int xMapSize, int yMapSize, int xRoomDimensions, int yRoomDimensions) { xDimension = xMapSize; yDimension = yMapSize; xRoomDimension = xRoomDimensions; yRoomDimension = yRoomDimensions; }
 	void GenerateMapGrid();
+
+	void ConnectRooms();
+
 	void SetMapDimensions(int xSize, int ySize) { xDimension = xSize; yDimension = ySize; }
 	void SetRoomDimensions(int xSize, int ySize) { xRoomDimension = xSize; yRoomDimension = ySize; }
 	int xDimension, yDimension;

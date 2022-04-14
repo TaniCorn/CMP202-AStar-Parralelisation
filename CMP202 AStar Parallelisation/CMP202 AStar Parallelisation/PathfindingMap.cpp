@@ -294,7 +294,13 @@ void Room::DualLinkRouteNodes(Node& node1, Node& node2)
 
 }
 
-void Room::GenerateAutomataMap(Vector2<int> dimensions, Vector2<int> topLeftCornerPosition)
+void Room::DualLinkRouteNodes(TeleportNode* node1, TeleportNode* node2)
+{
+	node1->nodeToTeleportTo = node2;
+	node2->nodeToTeleportTo = node1;
+}
+
+void Room::GenerateAutomataRoom(Vector2<int> dimensions, Vector2<int> topLeftCornerPosition)
 {
 	lowestCoord = topLeftCornerPosition;
 	highestCoord = topLeftCornerPosition + dimensions;
@@ -324,6 +330,48 @@ void Room::GenerateAutomataMap(Vector2<int> dimensions, Vector2<int> topLeftCorn
 	}
 }
 
+void Room::AddRouteNode(Vector2<int> location)
+{
+	for (int neighbourX = location.x - 1; neighbourX <= location.x + 1; neighbourX++)
+	{
+		for (int neighbourY = location.y - 1; neighbourY <= location.y + 1; neighbourY++)
+		{
+			//As long as we're not on the perimeter
+			if (neighbourX >= 0 && neighbourX < xSize && neighbourY >= 0 && neighbourY < ySize)
+			{
+				nodes[neighbourX][neighbourY].nodeType = Free;
+
+			}
+		}
+	}
+	nodes[location.x][location.y].nodeType = Routes;
+}
+TeleportNode* Room::AddRouteNode(int locationX, int locationY)
+{
+	//Searches a 3x3 around the target location
+	for (int neighbourX = locationX - 1; neighbourX <= locationX + 1; neighbourX++)
+	{
+		for (int neighbourY = locationY - 1; neighbourY <= locationY + 1; neighbourY++)
+		{
+			//As long as we're not on the perimeter
+			if (neighbourX >= 0 && neighbourX < xSize && neighbourY >= 0 && neighbourY < ySize)
+			{
+				nodes[neighbourX][neighbourY].nodeType = Free;
+
+			}
+		}
+	}
+
+
+	Node* oldNode = &nodes[locationX][locationY];
+	TeleportNode* tpNode = new TeleportNode();
+	*tpNode = *oldNode;
+	//delete oldNode; // Currently causes error
+
+	nodes[locationX][locationY] = *tpNode;
+	return tpNode;
+	//nodes[locationX][locationY].nodeType = Routes; //default constructor for teleportnode sets nodetype to route node
+}
 void Room::LinkRouteNodes(Node& node1, Node& node2, int neighbourNode1)
 {
 	node1.neighbours[neighbourNode1] = &node2;
