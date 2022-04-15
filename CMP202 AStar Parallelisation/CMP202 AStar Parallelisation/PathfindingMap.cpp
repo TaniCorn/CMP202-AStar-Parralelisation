@@ -330,23 +330,8 @@ void Room::GenerateAutomataRoom(Vector2<int> dimensions, Vector2<int> topLeftCor
 	}
 }
 
-void Room::AddRouteNode(Vector2<int> location)
-{
-	for (int neighbourX = location.x - 1; neighbourX <= location.x + 1; neighbourX++)
-	{
-		for (int neighbourY = location.y - 1; neighbourY <= location.y + 1; neighbourY++)
-		{
-			//As long as we're not on the perimeter
-			if (neighbourX >= 0 && neighbourX < xSize && neighbourY >= 0 && neighbourY < ySize)
-			{
-				nodes[neighbourX][neighbourY].nodeType = Free;
 
-			}
-		}
-	}
-	nodes[location.x][location.y].nodeType = Routes;
-}
-TeleportNode* Room::AddRouteNode(int locationX, int locationY)
+TeleportNode* Room::SpawnRouteNode(int locationX, int locationY)
 {
 	//Searches a 3x3 around the target location
 	for (int neighbourX = locationX - 1; neighbourX <= locationX + 1; neighbourX++)
@@ -394,7 +379,7 @@ void Room::AutoDualLinkRouteNodes()
 	}
 	for (auto room : neighbouringRooms)
 	{
-		std::vector<Node*> neighbourRouteNodes = room->GetRouteNodes();
+		std::vector<TeleportNode*> neighbourRouteNodes = room->GetRouteNodes();
 		for (int i = 0; i < routeNodes.size(); i++)
 		{
 			for (int j = 0; j < neighbourRouteNodes.size(); j++)

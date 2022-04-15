@@ -2,8 +2,9 @@
 //////////A Star Pathfing files // PathfindingMap.h required
 //////////Written by Tanapat Somrid 
 /////////Starting 01/12/2021
-//////// Most Recent Update 06/01/2022
-//////// Most Recent change: Quick fixes - closedSet in default not clearing for next run
+//////// Most Recent Update 15/04/2022
+//////// Most Recent change: After running through the program, i've now ensured that the program works as intended. Many minor bugfixes have been made, see edits in git to see more. 
+// ///// TODO: When setting the path to 'Path' it also sets all 'Route' nodes, fix
 //////// TODO: Get a lot of error checking and catch cases where the path cannot be found. Currently the algorithms mostly assume it's possible. Make undefined have more directions
 //////// TODO: Ideally, for actual use, the algorithm won't update continually only when(player has moved to a different room, player has moved position in same room);
 
@@ -73,7 +74,9 @@ public:
 		currentRoom = nm;
 		nodeSize = nm->GetNodeSize();
 	}
-
+	void SetTraversableRooms(std::vector<Room*> rooms) {
+		this->rooms = rooms;
+	}
 	/// <summary>
 	/// Find a path using the position of self and target
 	/// </summary>
@@ -184,9 +187,9 @@ private:
 	/// <param name="startNode"></param>
 	/// <param name="endNode"></param>
 	/// <returns></returns>
-	bool DefaultAStar(Node& startNode, Node& endNode);
+	bool DefaultAStar(Node* startNode, Node* endNode);
 
-	void CheckNeighbours(Node* node, Node& targetNode, std::set<Node*, ReverseComparator>& open, std::set<Node*>& closed);
+	void CheckNeighbours(Node* node, Node* targetNode, std::set<Node*, ReverseComparator>* open, std::set<Node*>* closed);
 	
 	/// <summary>
 	/// Find the correct route nodes to use for pathfinding through the given rooms

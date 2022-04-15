@@ -2,8 +2,8 @@
 //////////Node Map files
 //////////Written by Tanapat Somrid 
 /////////Starting 08/12/2021
-//////// Most Recent Update 14/04/2022
-//////// Most Recent change: Added TeleportNode. This will allow route nodes to still be traversable in all directions, but agents will have the option to travel throught it.
+//////// Most Recent Update 15/04/2022
+//////// Most Recent change: TeleportNodes copy constructors now include neighbours, NodeType has a path node to represent the path
 //TODO: There is now a lot of unnecessary functions that was used before and no longer used. When finished, consider cleaning it.
 
 
@@ -21,6 +21,9 @@ enum NodeType
 	Free = 0,
 	Obstacle = 1,
 	Routes = 2,
+
+	Path = 3,//Will be used for the main path
+	//Possibility to add a step by step walkthrough, we can add more variations later
 };
 
 /// <summary>
@@ -75,8 +78,8 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns></returns>
-	Node(const Node& a) { fCost = a.fCost; gCost = a.gCost; hCost = a.hCost; position = a.position; nodeType = a.nodeType; parentNode = a.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = a.neighbours[i]; }; }
-	Node& operator =(const Node& copy) { fCost = copy.fCost; gCost = copy.gCost; hCost = copy.hCost; position = copy.position; nodeType = copy.nodeType; parentNode = copy.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = copy.neighbours[i]; }; return *this; }
+	Node(const Node& a) { fCost = a.fCost; gCost = a.gCost; hCost = a.hCost; position = a.position; nodeType = a.nodeType; parentNode = a.parentNode; for (int i = 0; i < 8; i++) { neighbours[i] = a.neighbours[i]; }; }
+	Node& operator =(const Node& copy) { fCost = copy.fCost; gCost = copy.gCost; hCost = copy.hCost; position = copy.position; nodeType = copy.nodeType; parentNode = copy.parentNode; for (int i = 0; i < 8; i++) { neighbours[i] = copy.neighbours[i]; }; return *this; }
 
 	void SetNullNeighbours() {
 		for (int i = 0; i < 8; i++)
@@ -197,9 +200,9 @@ public:
 	//TeleportNode(const TeleportNode& a) {  fCost = a.GetFCost(); gCost = a.GetGCost(); hCost = a.GetHCost(); position = a.position; parentNode = a.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = a.neighbours[i]; }; }
 	//TeleportNode& operator =(const Node& copy) { fCost = copy.GetFCost(); gCost = copy.GetGCost(); hCost = copy.GetHCost(); position = copy.position;parentNode = copy.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = copy.neighbours[i]; }; return *this; }
 	//TeleportNode& operator =(const TeleportNode& copy) { fCost = copy.GetFCost(); gCost = copy.GetGCost(); hCost = copy.GetHCost(); position = copy.position; parentNode = copy.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = copy.neighbours[i]; }; return *this; }	
-	TeleportNode(const Node& a) {  position = a.position; }
-	TeleportNode(const TeleportNode& a) { position = a.position; }
-	TeleportNode& operator =(const Node& copy) { position = copy.position; return *this; }
-	TeleportNode& operator =(const TeleportNode& copy) { position = copy.position; return *this; }
+	TeleportNode(const Node& a) {  position = a.position; for (int i = 0; i < 8; i++) { neighbours[i] = a.neighbours[i]; }}
+	TeleportNode(const TeleportNode& a) { position = a.position; for (int i = 0; i < 8; i++) { neighbours[i] = a.neighbours[i]; }}
+	TeleportNode& operator =(const Node& copy) { position = copy.position;  for (int i = 0; i < 8; i++) { neighbours[i] = copy.neighbours[i]; }return *this;}
+	TeleportNode& operator =(const TeleportNode& copy) { position = copy.position;  for (int i = 0; i < 8; i++) { neighbours[i] = copy.neighbours[i]; }return *this;}
 };
 #endif // !NODEMAP_H

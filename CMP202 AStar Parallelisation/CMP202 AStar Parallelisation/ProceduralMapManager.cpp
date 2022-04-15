@@ -78,6 +78,7 @@ void ProceduralMapManager::GenerateMapGrid()
 				lock.unlock();
 
 				currentRoom->GenerateAutomataRoom(Vector2<int>(xRoomDimension, yRoomDimension), Vector2<int>(xDim * xRoomDimension, yDim * yRoomDimension));
+				currentRoom->LinkNeighbours(*currentRoom);
 			}
 			}));
 	}
@@ -115,8 +116,8 @@ void ProceduralMapManager::ConnectRooms()
 		for (int x = 0; x < xDimension - 1; x++)
 		{
 			//Links this room and the one to the right
-			TeleportNode* node1 = roomsInMap[x][y].AddRouteNode(horizontal_RightX, horizontal_Y);
-			TeleportNode* node2 = roomsInMap[x+1][y].AddRouteNode(horizontal_LeftX, horizontal_Y);
+			TeleportNode* node1 = roomsInMap[x][y].SpawnRouteNode(horizontal_RightX, horizontal_Y);
+			TeleportNode* node2 = roomsInMap[x+1][y].SpawnRouteNode(horizontal_LeftX, horizontal_Y);
 
 			roomsInMap[x][y].DualLinkRouteNodes(node1, node2);
 			if (failsafe)
@@ -127,10 +128,14 @@ void ProceduralMapManager::ConnectRooms()
 					roomsInMap[x+1][y].nodes[horizontal_LeftX + i][horizontal_Y].nodeType = Free;
 				}
 			}
+			roomsInMap[x][y].AddNeighbouringRoom(&roomsInMap[x + 1][y]);
+			roomsInMap[x+1][y].AddNeighbouringRoom(&roomsInMap[x][y]);
+			roomsInMap[x][y].AddRouteNode(node1);
+			roomsInMap[x+1][y].AddRouteNode(node2);
 
 			//Links this room and the one below this one
-			node1 = roomsInMap[x][y].AddRouteNode(vertical_X, vertical_BottomY);
-			node2 = roomsInMap[x][y + 1].AddRouteNode(vertical_X, vertical_TopY);
+			node1 = roomsInMap[x][y].SpawnRouteNode(vertical_X, vertical_BottomY);
+			node2 = roomsInMap[x][y + 1].SpawnRouteNode(vertical_X, vertical_TopY);
 
 			roomsInMap[x][y].DualLinkRouteNodes(node1, node2);
 			if (failsafe)
@@ -141,6 +146,10 @@ void ProceduralMapManager::ConnectRooms()
 					roomsInMap[x][y+1].nodes[vertical_X][vertical_TopY + i].nodeType = Free;
 				}
 			}
+			roomsInMap[x][y].AddNeighbouringRoom(&roomsInMap[x][y+1]);
+			roomsInMap[x][y+1].AddNeighbouringRoom(&roomsInMap[x][y]);
+			roomsInMap[x][y].AddRouteNode(node1);
+			roomsInMap[x][y+1].AddRouteNode(node2);
 		}
 	}
 }

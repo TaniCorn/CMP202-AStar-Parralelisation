@@ -158,6 +158,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="PathfindingMap.cpp" />
+    <ClCompile Include="PathfindingVisualisation.cpp" />
     <ClCompile Include="ProceduralMapManager.cpp" />
     <ClCompile Include="RandomBase10.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PathfindingMap.h" />
+    <ClInclude Include="PathfindingVisualisation.h" />
     <ClInclude Include="ProceduralMapManager.h" />
     <ClInclude Include="RandomBase10.h" />
     <ClInclude Include="VectorPositions.h" />

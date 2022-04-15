@@ -3,8 +3,8 @@
 //////////Pathfinding Map files
 //////////Written by Tanapat Somrid 
 /////////Starting 18/12/2021
-//////// Most Recent Update 14/01/2022
-//////// Most Recent change: Added 'AddRouteNode' - Adds a route node on a location and surrounds itself with free nodes. 'DualLinkRouteNode' - Takes in TeleportNodes and sets their teleport variable to each other
+//////// Most Recent Update 15/01/2022
+//////// Most Recent change: Changed 'AddRouteNode(...)' to 'SpawnRouteNode(...). Added 'AddRouteNode(...)' to roomstruct. Deleted 'SpawnRouteNode(Vector2<int>)'.
 #pragma once
 #ifndef PATHFINDINGMAP_H
 #define PATHFINDINGMAP_H
@@ -37,7 +37,7 @@ public:
 	Node** nodes;//The nodes in the room(TODO:Explore graphs)
 protected:
 	Vector2<int> lowestCoord, highestCoord;//Room boundary coordinates.
-	std::vector<Node*> routeNodes;//Nodes that connect to other rooms
+	std::vector<TeleportNode*> routeNodes;//Nodes that connect to other rooms
 	std::set<RoomStruct*> neighbouringRooms;//Neighbouring rooms, can have multiple(Possibility for traversal of levels up and down through stairs)
 	RoomStruct* parent;//Parent room of pathfinding rooms
 
@@ -49,7 +49,7 @@ public:
 	void SetLowestCoord(Vector2<int> low) { lowestCoord = low; } void SetHighestCoord(Vector2<int> high) { highestCoord = high; }
 	std::set<RoomStruct*> GetNeighbouringRooms() const { return neighbouringRooms; } void SetNeighbouringRooms(std::set<RoomStruct*> nr) { neighbouringRooms = nr; } void AddNeighbouringRoom(RoomStruct* room) { neighbouringRooms.insert(room); }
 	RoomStruct* GetParentRoom() const { return parent; } void SetParentRoom(RoomStruct* rs) { parent = rs; }
-	std::vector<Node*> GetRouteNodes() { return routeNodes; } void SetRoutNodes(std::vector<Node*> n) { routeNodes = n; }
+	std::vector<TeleportNode*> GetRouteNodes() { return routeNodes; } void SetRouteNodes(std::vector<TeleportNode*> n) { routeNodes = n; } void AddRouteNode(TeleportNode* node) { routeNodes.push_back(node); }
 
 };
 
@@ -95,8 +95,7 @@ public:
 	/// <param name="topLeftCornerPosition"></param>
 	void GenerateAutomataRoom(Vector2<int> dimensions, Vector2<int> topLeftCornerPosition);
 
-	void AddRouteNode(Vector2<int> location);
-	TeleportNode* AddRouteNode(int locationX, int locationY);
+	TeleportNode* SpawnRouteNode(int locationX, int locationY);
 };
 class Map {
 public:

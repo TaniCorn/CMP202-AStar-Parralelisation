@@ -1,15 +1,8 @@
 
-#include "CustomLoader.h"
 #include "ProceduralMapManager.h"
 #include "Input.h"
-#include <chrono>
 #include "SFML\Graphics.hpp"
-
-typedef std::chrono::steady_clock the_clock;
-using std::chrono::duration_cast;
-using std::chrono::milliseconds;
-using std::chrono::nanoseconds;
-using std::chrono::microseconds;
+#include "PathfindingVisualisation.h"
 
 void ResetRoomCalculations(Room* rm) {
     for (int x = 0; x < rm->GetXSize(); x++)
@@ -76,31 +69,7 @@ void sfmlEvents(sf::RenderWindow* window, Input* in) {
 	}
 }
 
-void UpdateObjects(Vector2<int> mapArray, ProceduralMapManager* pmm, std::vector<sf::RectangleShape>* drawableShapes) {
-    int i = 0;
-    Room* roomToRender = &pmm->roomsInMap[mapArray.x][mapArray.y];
 
-    sf::Vector2f positionStart = sf::Vector2f(roomToRender->GetLowestCoord().x, roomToRender->GetLowestCoord().y);
-    for (int x = 0; x < roomToRender->GetXSize(); x++)
-    {
-        for (int y = 0; y < roomToRender->GetYSize(); y++)
-        {
-            if (roomToRender->nodes[x][y].nodeType == Free)
-            {
-                drawableShapes->at(i).setFillColor(sf::Color::Blue);
-            }
-            else if (roomToRender->nodes[x][y].nodeType == Obstacle) {
-                drawableShapes->at(i).setFillColor(sf::Color::Red);
-            }
-            else {
-                drawableShapes->at(i).setFillColor(sf::Color::Yellow);
-            }
-            drawableShapes->at(i).setPosition((positionStart.x * 10) + (x * 10), (10 * positionStart.y) + (y * 10));
-            i++;
-
-        }
-    }
-}
 //TODO: There is currently no memory management, assume only one run is allowed
 int main() {
     srand(time(0));
@@ -109,122 +78,20 @@ int main() {
     Input* input;
     input = new Input();
 
-#pragma region TESTINGCA
-    //CellularAutomata ca;
-    //ca.GenerateMap();
-
-    //size 10 = position * 10
-    // size 1 = position * 1
-    //std::vector<sf::RectangleShape> rectCA;
-    //for (int y = 0; y < ca.height; y++)
-    //{
-    //    for (int x = 0; x < ca.width; x++)
-    //    {
-    //        if (ca.map[x][y] == 1)
-    //        {
-    //            rectCA.push_back(sf::RectangleShape());
-    //            rectCA.back().setSize(sf::Vector2f(10,10));
-    //            rectCA.back().setPosition(x * 10, y * 10);
-    //            //rectCA.back().setOutlineColor(sf::Color::Black);
-    //            //rectCA.back().setOutlineThickness(1);
-    //            rectCA.back().setFillColor(sf::Color::Red);
-
-    //        }else{
-    //            rectCA.push_back(sf::RectangleShape());
-    //            rectCA.back().setSize(sf::Vector2f(10, 10));
-    //            rectCA.back().setPosition(x * 10, y * 10);
-    //           // rectCA.back().setOutlineColor(sf::Color::Black);
-    //            //rectCA.back().setOutlineThickness(1);
-    //            rectCA.back().setFillColor(sf::Color::Blue);
-
-    //        }
-    //    }
-    //}
-#pragma endregion
-
-#pragma region TESTINGPMM
-    ProceduralMapManager pmm;
-    pmm.Init(5, 5, 100, 100);
-    pmm.GenerateMapGrid();
-    pmm.ConnectRooms();
-
-    std::vector<sf::RectangleShape> rectDraw;
-    for (int i = 0; i < 10000; i++)
-    {
-            rectDraw.push_back(sf::RectangleShape());
-            rectDraw.back().setSize(sf::Vector2f(10,10));
-            rectDraw.back().setOutlineColor(sf::Color::Black);
-            rectDraw.back().setOutlineThickness(1);
-            rectDraw.back().setFillColor(sf::Color::Red);
-            
-            //rectFree.push_back(sf::RectangleShape());
-            //rectFree.back().setSize(sf::Vector2f(10,10));
-            //rectFree.back().setOutlineColor(sf::Color::Black);
-            //rectFree.back().setOutlineThickness(1);
-            //rectFree.back().setFillColor(sf::Color::Blue);
-    }
-    UpdateObjects(Vector2<int>(0, 0), &pmm, &rectDraw);
-    Vector2<int> position = Vector2<int>(0, 0);
-    sf::Vector2f viewCenter = view.getCenter();
-    sf::Vector2f addViewCenter;
-#pragma endregion
-
+    PathfindingVisualisation pathfindingVisuals;
+    pathfindingVisuals.Init(input, &window, &view);
     while (window.isOpen())
     {
         sfmlEvents(&window, input);
         window.setView(view);
 
-        addViewCenter = sf::Vector2f(0, 0);
-        input->update();
-        if (input->isPressed(sf::Keyboard::Right))
-        {
-            if (position.x != pmm.xDimension - 1)
-            {
-                addViewCenter = sf::Vector2f(1000, 0);
-                position.x = position.x + 1;
-                UpdateObjects(position, &pmm, &rectDraw);
-            }
+        pathfindingVisuals.Update();
+        pathfindingVisuals.HandleInput();
 
-        }       
-        if (input->isPressed(sf::Keyboard::Left))
-        {
-            if (position.x != 0)
-            {
-                addViewCenter = sf::Vector2f(-1000, 0);
-                position.x = position.x - 1;
-                UpdateObjects(position, &pmm, &rectDraw);
-            }
-
-        }
-        if (input->isPressed(sf::Keyboard::Down))
-        {
-            if (position.y != pmm.yDimension - 1)
-            {
-                addViewCenter = sf::Vector2f(0, 1000);
-                position.y = position.y + 1;
-                UpdateObjects(position, &pmm, &rectDraw);
-            }
-
-        }
-        if (input->isPressed(sf::Keyboard::Up))
-        {
-            if (position.y != 0)
-            {
-                addViewCenter = sf::Vector2f(0, -1000);
-                position.y = position.y - 1;
-                UpdateObjects(position, &pmm, &rectDraw);
-            }
-
-        }
-        viewCenter += addViewCenter;
         window.clear(sf::Color(0, 0, 0));
         //Draw things here:
-        for (int i = 0; i < rectDraw.size(); i++)
-        {
-            window.draw(rectDraw[i]);
-        }
+        pathfindingVisuals.Render();
         window.display();
-        view.setCenter(viewCenter);
 
     }
     return 0;
