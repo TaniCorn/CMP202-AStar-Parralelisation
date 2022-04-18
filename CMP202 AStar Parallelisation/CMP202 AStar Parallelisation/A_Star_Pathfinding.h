@@ -2,9 +2,8 @@
 //////////A Star Pathfing files // PathfindingMap.h required
 //////////Written by Tanapat Somrid 
 /////////Starting 01/12/2021
-//////// Most Recent Update 15/04/2022
-//////// Most Recent change: After running through the program, i've now ensured that the program works as intended. Many minor bugfixes have been made, see edits in git to see more. 
-// ///// TODO: When setting the path to 'Path' it also sets all 'Route' nodes, fix
+//////// Most Recent Update 18/04/2022
+//////// Most Recent change: Cleanup Done
 //////// TODO: Get a lot of error checking and catch cases where the path cannot be found. Currently the algorithms mostly assume it's possible. Make undefined have more directions
 //////// TODO: Ideally, for actual use, the algorithm won't update continually only when(player has moved to a different room, player has moved position in same room);
 
@@ -21,10 +20,6 @@
 #include <queue>
 #include "PathfindingMap.h"
 
-//For some reason the priority queue and node have different ways of comparing so I have to use two different comparator
-
-#pragma region COMPARATOR
-
 /// <summary>
 /// Checks the smallest fcost, smallest h cost
 /// </summary>
@@ -38,21 +33,7 @@ public:
 		return (a->GetFCost() < b->GetFCost());
 	}
 };
-/// <summary>
-/// Checks the smallest fcost, smallest h cost
-/// </summary>
-struct PriorityComparator {
-public:
-	bool operator ()(const Node* a, const Node* b) const {
-		if (a->GetFCost() == b->GetFCost())
-		{
-			return a->GetHCost() < b->GetHCost();
-		}
-		return (a->GetFCost() > b->GetFCost());
-	}
-};
 
-#pragma endregion
 
 /// <summary>
 /// Base A Star Class, provides base functionality, virtual functions and helper functions. Also provides limited member variables
@@ -62,7 +43,6 @@ public:
 	Node* root;//Start node
 	Node* target;//End node
 	Room* currentRoom;//Contains Obstacle locations
-	int nodeSize;//Allows us to take into account of the size of the agent using this(Assuming position is the center of agent, agent will not go halfway inside a wall.)
 
 	int iterations;//For Debug and checking
 
@@ -72,7 +52,6 @@ public:
 	#pragma region MANDATORY_BASE_FUNCTIONS
 	void SetCurrentRoom(Room* nm) {
 		currentRoom = nm;
-		nodeSize = nm->GetNodeSize();
 	}
 	void SetTraversableRooms(std::vector<Room*> rooms) {
 		this->rooms = rooms;
@@ -146,8 +125,6 @@ public:
 	void PrintRoute();
 };
 
-//Todo: The segmented functions provide a much better base and maybe should be used instead?
-
 /// <summary>
 /// Optimises room functionality, when there are many obstacles to go through and the path may be more obscure than thought.
 /// </summary>
@@ -162,11 +139,6 @@ public:
 
 
 private:
-	/// <summary>
-	/// Searches all rooms to find our current room based on our position //Move to base?
-	/// </summary>
-	/// <param name="rootPosition"></param>
-	void FindCurrentRoom(const Vector2<int> rootPosition) override;
 	void AStarAlgorithm() override;
 
 	/// <summary>

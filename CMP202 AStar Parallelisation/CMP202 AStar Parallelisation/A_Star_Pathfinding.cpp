@@ -42,20 +42,10 @@ Node* Base_A_Star_Pathfinding::FindNodeInRoom(Vector2<int> pos, Room* rm)
 	Vector2<int> tempPos = pos;
 	tempPos -= balance;
 
-	//In case the position is off by some bits of size
-	int x, y, shift;
+	int x, y;
 	x = 0;
 	y = 0;
-	if (tempPos.x != 0)
-	{
-		shift = rm->GetNodeSize() % tempPos.x;//Translate ourselves to nodes positions if we start at 30 but nodesize is 50 then we add 20;
-		x = (tempPos.x + shift) / rm->GetNodeSize();
-	}
-	if (tempPos.y != 0)
-	{
-		shift = rm->GetNodeSize() % tempPos.y;
-		y = (tempPos.y + shift) / rm->GetNodeSize();
-	}
+	x = tempPos.x; y = tempPos.y;
 
 	return &rm->nodes[x][y];
 }
@@ -63,35 +53,12 @@ Node* Base_A_Star_Pathfinding::FindNodeInRoom(Vector2<int> pos, Room* rm)
 
 void Base_A_Star_Pathfinding::PrintRoute()
 {
-	//Sets the route to 2 to easily identify
 	Node* cn; cn = target;
 	while (cn->GetParent() != nullptr)
 	{
 		cn->nodeType = Path;
 		cn = cn->GetParent();
 	}
-
-	//Print room map 
-	/*bool newLine = false;
-	for (auto rm : rooms)
-	{
-		for (int x = 0; x < rm->GetXSize(); x++)
-		{
-			for (int y = 0; y < rm->GetYSize(); y++)
-			{
-				if (newLine)
-				{
-					std::cout << rm->nodes[y][x].nodeType << std::endl;
-					newLine = false;
-				}
-				else {
-					std::cout << rm->nodes[y][x].nodeType << " | ";
-				}
-			}
-			newLine = true;
-
-		}
-	}*/
 
 }
 
@@ -122,17 +89,6 @@ bool Base_A_Star_Pathfinding::IsNodeInRoom(const RoomStruct& nm, const Vector2<i
 
 
 #pragma region SEGMENTED
-void A_Star_Pathfinding_Defined_Segmented::FindCurrentRoom(const Vector2<int> rootPosition)
-{
-	for (int i = 0; i < rooms.size(); i++)
-	{
-		if (IsNodeInRoom(*rooms[i], rootPosition))
-		{
-			SetCurrentRoom(rooms[i]);
-			return;
-		}
-	}
-}
 
 /// <summary>
 /// Specific to segmented variant
@@ -250,9 +206,6 @@ Node* A_Star_Pathfinding_Defined_Segmented::FindRouteNode(std::stack<RoomStruct*
 	//The temporaryTarget nodes we will be pushing are not the route nodes but the nodes that lead to the next room, that is neighbouring that route node.
 	for (auto routeNode : map->GetRouteNodes())
 	{
-		//Search all neighbours of routeNode
-		//for (int i = 0; i < 8; i++)
-		//{
 			Node* nodeInNextRoom = routeNode->nodeToTeleportTo;
 			if (nodeInNextRoom != nullptr)
 			{
@@ -262,7 +215,6 @@ Node* A_Star_Pathfinding_Defined_Segmented::FindRouteNode(std::stack<RoomStruct*
 				}
 			}
 
-		//}
 	}
 	return nullptr;
 }
@@ -287,7 +239,7 @@ bool A_Star_Pathfinding_Defined_Segmented::DefaultAStar(Node* startNode, Node* e
 		//std::cout << current->position;
 		//If we found end, stop pathfinding
 		//int o = current->DistanceFromM(endNode.position);//debugging
-		if (current->DistanceFromM(endNode->position) < nodeSize)
+		if (current->DistanceFromM(endNode->position) < 1)
 		{
 			return true;
 		}
@@ -318,12 +270,7 @@ void A_Star_Pathfinding_Defined_Segmented::CheckNeighbours(Node* current, Node* 
 		{
 			continue;
 		}
-		//UPDATE: Should no longer be necessary
-		////To stop a infinite parent loop from previous route node(as that isn't added into the next closed set
-		//if (neighbour->parentNode != nullptr)
-		//{
-		//	continue;
-		//}
+
 		if (neighbour->position == targetNode->position)
 		{
 			targetNode->SetParent(current);

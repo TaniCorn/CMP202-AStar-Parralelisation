@@ -84,7 +84,7 @@
       <Filter>Source Files\Helper</Filter>
     </ClInclude>
     <ClInclude Include="PathfindingVisualisation.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

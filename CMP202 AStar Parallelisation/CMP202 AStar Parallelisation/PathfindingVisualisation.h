@@ -3,8 +3,8 @@
 //////////Pathfinding Visualisation files
 //////////Written by Tanapat Somrid 
 /////////Starting 15/04/2022
-//////// Most Recent Update 15/04/2022
-//////// Most Recent change: Imported everything from source in here to make source cleaner
+//////// Most Recent Update 18/04/2022
+//////// Most Recent change: Cleanup
 #pragma once
 #ifndef PATHFINDINGVISUALISATION_H
 

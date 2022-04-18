@@ -20,12 +20,6 @@ void PathfindingVisualisation::Init(Input* in, sf::RenderWindow* wind,sf::View* 
         rectDraw.back().setOutlineColor(sf::Color::Black);
         rectDraw.back().setOutlineThickness(1);
         rectDraw.back().setFillColor(sf::Color::Red);
-
-        //rectFree.push_back(sf::RectangleShape());
-        //rectFree.back().setSize(sf::Vector2f(10,10));
-        //rectFree.back().setOutlineColor(sf::Color::Black);
-        //rectFree.back().setOutlineThickness(1);
-        //rectFree.back().setFillColor(sf::Color::Blue);
     }
 
     pathfindingAgent = new A_Star_Pathfinding_Defined_Segmented();
@@ -123,7 +117,7 @@ void PathfindingVisualisation::UpdateObjects(Vector2<int> mapArray, ProceduralMa
             else if (roomToRender->nodes[x][y].nodeType == Obstacle) {
                 drawableShapes->at(i).setFillColor(sf::Color::Red);
             }
-            else if(roomToRender->nodes[x][y].nodeType == Obstacle) {
+            else if(roomToRender->nodes[x][y].nodeType == Path) {
                 drawableShapes->at(i).setFillColor(sf::Color::Yellow);
             }           
             else {

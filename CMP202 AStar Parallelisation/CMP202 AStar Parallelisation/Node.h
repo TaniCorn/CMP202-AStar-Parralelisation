@@ -2,9 +2,8 @@
 //////////Node Map files
 //////////Written by Tanapat Somrid 
 /////////Starting 08/12/2021
-//////// Most Recent Update 15/04/2022
-//////// Most Recent change: TeleportNodes copy constructors now include neighbours, NodeType has a path node to represent the path
-//TODO: There is now a lot of unnecessary functions that was used before and no longer used. When finished, consider cleaning it.
+//////// Most Recent Update 18/04/2022
+//////// Most Recent change: Cleaning Done
 
 
 #pragma once
@@ -54,19 +53,6 @@ public:
 	/// </summary>
 	Node() {
 	}
-	/// <summary>
-	/// Constructor for new Nodes
-	/// </summary>
-	Node(const Vector2<int>& newPosition) {
-		nodeType = Free;
-		position = newPosition;
-		parentNode = nullptr;
-	}
-	Node(int x, int y) {
-		nodeType = Free;
-		position.x = x; position.y = y;
-		parentNode = nullptr;
-	}
 
 	~Node() {
 
@@ -91,28 +77,6 @@ public:
 
 public:
 #pragma region DISTANCES
-	/// <summary>
-/// The EUCLIDEAN distance from this node and the given coordinates (x and y)
-/// </summary>
-/// <returns>EUCLIDEAN DISTANCE</returns>
-	int DistanceFromE(int x, int y) { return position.DistanceFrom(x, y); }
-	/// <summary>
-	/// The EUCLIDEAN distance from this node and the given vector (position.x and position.y)
-	/// </summary>
-	/// <returns>EUCLIDEAN DISTANCE</returns>
-	int DistanceFromE(const Vector2<int>& pos) {
-		return position.DistanceFrom(pos);
-	}
-	/// <summary>
-	/// The EUCLIDEAN distance between two given nodes
-	/// <para> From Node A to Node B</para>
-	/// </summary>
-	/// <param name="Node A"></param>
-	/// <param name="Node B"></param>
-	/// <returns>EUCLIDEAN DISTANCE</returns>
-	static int DistanceBetweenE(const Node& a, const Node& b) {
-		return Vector2<int>::DistanceBetween(a.position, b.position);
-	}
 	/// <summary>
 /// The MANHATTAN distance from this node and the given coordinates (x and y)
 /// </summary>
