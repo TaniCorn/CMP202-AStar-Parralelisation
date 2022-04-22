@@ -54,6 +54,9 @@
     <ClCompile Include="PathfindingVisualisation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="A_Star_PathfindingCPU.cpp">
+      <Filter>Source Files\Pathfinding</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomLoader.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="PathfindingVisualisation.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="A_Star_PathfindingCPU.h">
+      <Filter>Source Files\Pathfinding</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

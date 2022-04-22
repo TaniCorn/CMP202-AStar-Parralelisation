@@ -29,17 +29,9 @@ void ProceduralMapManager::GenerateMapGrid()
 
 
 	//Changes how many threads gets used depending on data size
-	int threadDivide = 1;
+	int threadDivide = 4;
 	if (std::thread::hardware_concurrency() > 8)
 	{
-		//threadDivide = floor(std::thread::hardware_concurrency() / (2 + ((xDimension * yDimension) > 5000) + ((xDimension * yDimension) < 1000) + ((xDimension * yDimension) < 100) ) );
-		if ((xDimension * yDimension) >= 10)
-		{
-			threadDivide = 4;
-		}
-		else {
-			threadDivide = 8;
-		}
 		if ((xDimension * yDimension) >= 1000)
 		{
 			threadDivide = 2;

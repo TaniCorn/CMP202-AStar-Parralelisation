@@ -1,80 +1,18 @@
-﻿  A_Star_Pathfinding.cpp
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(127,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(130,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(133,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(136,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(144,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(147,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
+﻿  A_Star_PathfindingCPU.cpp
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(126,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(129,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(132,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(135,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(143,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(146,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_Pathfinding.cpp(26,53): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(22,53): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int
           ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_Pathfinding.cpp(26,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Node.cpp
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(127,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(130,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(133,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(136,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(144,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(147,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-  PathfindingMap.cpp
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(127,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(130,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(133,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(136,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(144,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(147,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingMap.cpp(203,23): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  PathfindingVisualisation.cpp
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(127,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(130,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(133,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(136,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(144,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(147,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(114,111): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(114,77): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-  ProceduralMapManager.cpp
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(127,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(130,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(133,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(136,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(144,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(147,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\ProceduralMapManager.cpp(54,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\ProceduralMapManager.cpp(73,14): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  Source.cpp
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(127,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(130,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(133,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(136,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(144,11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Node.h(147,10): warning C4244: 'return': conversion from 'const float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Source.cpp(75,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingMap.cpp(30): warning C4715: 'OppositeDirection': not all control paths return a value
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(22,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(41): warning C4715: 'Base_A_Star_PathfindingCPU::GetNodeFromPosition': not all control paths return a value
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/PROFILE' specification
 A_Star_Pathfinding.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:REF' specification
   CMP202 AStar Parallelisation.vcxproj -> C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\x64\Debug\CMP202 AStar Parallelisation.exe

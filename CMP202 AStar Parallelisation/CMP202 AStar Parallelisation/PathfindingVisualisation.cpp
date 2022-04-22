@@ -8,21 +8,49 @@ void PathfindingVisualisation::Init(Input* in, sf::RenderWindow* wind,sf::View* 
     view = vie;
     viewCenter = vie->getCenter();
 
+    std::vector<std::thread> threads;
+    std::mutex lock;
+    int shapeNumber = 0; const int shapesNeeded = 10000;
+    for (int threadIndex = 0; threadIndex < std::thread::hardware_concurrency()/2; threadIndex++)
+    {
+        threads.push_back(std::thread([&]() {
+
+            while (shapeNumber < shapesNeeded)
+            {
+                lock.lock();
+                if (shapeNumber == shapesNeeded)
+                {
+                    lock.unlock();
+                    return;
+                }			
+                rectDraw.push_back(sf::RectangleShape());
+                int iterRD = shapeNumber;
+                shapeNumber++;
+                lock.unlock();
+
+                rectDraw[iterRD].setSize(sf::Vector2f(10, 10));
+                rectDraw[iterRD].setOutlineColor(sf::Color::Black);
+                rectDraw[iterRD].setOutlineThickness(1);
+                rectDraw[iterRD].setFillColor(sf::Color::Red);
+            }
+            }));
+    }
+    //for (int i = 0; i < 10000; i++)
+    //{
+    //    rectDraw.push_back(sf::RectangleShape());
+    //    rectDraw.back().setSize(sf::Vector2f(10, 10));
+    //    rectDraw.back().setOutlineColor(sf::Color::Black);
+    //    rectDraw.back().setOutlineThickness(1);
+    //    rectDraw.back().setFillColor(sf::Color::Red);
+    //}
 
     pmm.Init(5, 5, 100, 100);
     pmm.GenerateMapGrid();
     pmm.ConnectRooms();
 
-    for (int i = 0; i < 10000; i++)
-    {
-        rectDraw.push_back(sf::RectangleShape());
-        rectDraw.back().setSize(sf::Vector2f(10, 10));
-        rectDraw.back().setOutlineColor(sf::Color::Black);
-        rectDraw.back().setOutlineThickness(1);
-        rectDraw.back().setFillColor(sf::Color::Red);
-    }
 
-    pathfindingAgent = new A_Star_Pathfinding_Defined_Segmented();
+
+    pathfindingAgent = new A_Star_Pathfinding_Defined_SegmentedCPU();
     pathfindingAgent->SetCurrentRoom(&pmm.roomsInMap[0][0]);
     for (int y = 0; y < pmm.yDimension; y++)
     {
@@ -34,6 +62,11 @@ void PathfindingVisualisation::Init(Input* in, sf::RenderWindow* wind,sf::View* 
     pathfindingAgent->FindPath(pmm.roomsInMap[0][0].nodes[pmm.xRoomDimension / 2][pmm.yRoomDimension / 2].position, pmm.roomsInMap[2][1].nodes[pmm.xRoomDimension / 2][pmm.yRoomDimension / 2].position);
     pathfindingAgent->PrintRoute();
 
+    std::for_each(threads.begin(), threads.end(), [](std::thread& t)
+        {
+            t.join();
+        });
+
     UpdateObjects(Vector2<int>(0, 0), &pmm, &rectDraw);
 
 }
@@ -41,7 +74,6 @@ void PathfindingVisualisation::Init(Input* in, sf::RenderWindow* wind,sf::View* 
 void PathfindingVisualisation::Update()
 {
     addViewCenter = sf::Vector2f(0, 0);
-
 }
 
 void PathfindingVisualisation::HandleInput()
@@ -89,7 +121,6 @@ void PathfindingVisualisation::HandleInput()
 
     }
     viewCenter += addViewCenter;
-
 }
 
 void PathfindingVisualisation::Render()
@@ -99,7 +130,6 @@ void PathfindingVisualisation::Render()
         window->draw(rectDraw[i]);
     }
     view->setCenter(viewCenter);
-
 }
 void PathfindingVisualisation::UpdateObjects(Vector2<int> mapArray, ProceduralMapManager* pmm, std::vector<sf::RectangleShape>* drawableShapes) {
     int i = 0;

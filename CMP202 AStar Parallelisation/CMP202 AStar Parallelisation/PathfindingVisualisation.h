@@ -3,8 +3,8 @@
 //////////Pathfinding Visualisation files
 //////////Written by Tanapat Somrid 
 /////////Starting 15/04/2022
-//////// Most Recent Update 18/04/2022
-//////// Most Recent change: Cleanup
+//////// Most Recent Update 20/04/2022
+//////// Most Recent change: Parallelised Update Object function
 #pragma once
 #ifndef PATHFINDINGVISUALISATION_H
 
@@ -14,7 +14,7 @@
 #include "SFML\Graphics.hpp"
 #include "VectorPositions.h"
 #include "ProceduralMapManager.h"
-#include "A_Star_Pathfinding.h"
+#include "A_Star_PathfindingCPU.h"
 
 class PathfindingVisualisation
 {
@@ -40,7 +40,7 @@ public:
 	sf::Vector2f addViewCenter;
 
 
-	A_Star_Pathfinding_Defined_Segmented* pathfindingAgent;
+	A_Star_Pathfinding_Defined_SegmentedCPU* pathfindingAgent;
 };
 
 #endif // !PATHFINDINGVISUALISATION

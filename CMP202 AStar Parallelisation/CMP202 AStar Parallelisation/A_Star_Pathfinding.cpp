@@ -1,4 +1,5 @@
 #include "A_Star_Pathfinding.h"
+#include <thread>
 
 #pragma region BASE_ASTAR
 
@@ -46,8 +47,16 @@ Node* Base_A_Star_Pathfinding::FindNodeInRoom(Vector2<int> pos, Room* rm)
 	x = 0;
 	y = 0;
 	x = tempPos.x; y = tempPos.y;
-
 	return &rm->nodes[x][y];
+
+	//try
+	//{
+	//	//return &rm->nodes[299][299]; //This does not catch
+
+	//}
+	//catch (const std::exception&)
+	//{
+	//}
 }
 
 

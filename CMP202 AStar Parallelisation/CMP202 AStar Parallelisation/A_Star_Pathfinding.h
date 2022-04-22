@@ -69,7 +69,7 @@ public:
 		FindCurrentRoom(startPos);
 		SetUpStartAndEndNodes(startPos, endPos);
 		AStarAlgorithm();
-	};
+	};	
 
 protected:
 	/// <summary>
