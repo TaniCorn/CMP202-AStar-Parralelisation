@@ -27,7 +27,7 @@ public:
 		}
 		delete[] roomsInMap;
 	};
-	bool failsafe = true;
+	bool failsafe = false;
 	Room** roomsInMap;
 
 	void Init(int xMapSize, int yMapSize, int xRoomDimensions, int yRoomDimensions) { xDimension = xMapSize; yDimension = yMapSize; xRoomDimension = xRoomDimensions; yRoomDimension = yRoomDimensions; }

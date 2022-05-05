@@ -248,10 +248,10 @@ bool A_Star_Pathfinding_Defined_Segmented::DefaultAStar(Node* startNode, Node* e
 		//std::cout << current->position;
 		//If we found end, stop pathfinding
 		//int o = current->DistanceFromM(endNode.position);//debugging
-		if (current->DistanceFromM(endNode->position) < 1)
-		{
-			return true;
-		}
+		//if (current->DistanceFromE(endNode->position) < 1)//TODO
+		//{
+		//	return true;
+		//}
 		std::set<Node*>::iterator it = open.begin();//For some reason, it won't erase some points, so we need to point to the first one to erase instead of erasing the specific node
 
 		//Restructure the node collections
@@ -299,7 +299,7 @@ void A_Star_Pathfinding_Defined_Segmented::CheckNeighbours(Node* current, Node* 
 		//If neighbour is not in open, set
 		if (inToSearch)
 		{
-			int newHCost = Node::DistanceBetweenM(*neighbour, *targetNode);
+			int newHCost = Node::GetDistance(*neighbour, *targetNode);
 			neighbour->SetGCost(newGCost);
 			neighbour->SetHCost(newHCost);
 			neighbour->SetFCost();

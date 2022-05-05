@@ -30,7 +30,7 @@ void PathfindingVisualisation::Init(Input* in, sf::RenderWindow* wind,sf::View* 
 
                 rectDraw[iterRD].setSize(sf::Vector2f(10, 10));
                 rectDraw[iterRD].setOutlineColor(sf::Color::Black);
-                rectDraw[iterRD].setOutlineThickness(1);
+                rectDraw[iterRD].setOutlineThickness(1.f);
                 rectDraw[iterRD].setFillColor(sf::Color::Red);
             }
             }));
@@ -49,18 +49,16 @@ void PathfindingVisualisation::Init(Input* in, sf::RenderWindow* wind,sf::View* 
     pmm.ConnectRooms();
 
 
-
-    pathfindingAgent = new A_Star_Pathfinding_Defined_SegmentedCPU();
-    pathfindingAgent->SetCurrentRoom(&pmm.roomsInMap[0][0]);
+    pathfindingAgent_CPU = new A_Star_Pathfinding_Defined_SegmentedGPU();
     for (int y = 0; y < pmm.yDimension; y++)
     {
         for (int x = 0; x < pmm.xDimension; x++)
         {
-            pathfindingAgent->rooms.push_back(&pmm.roomsInMap[x][y]);
+            pathfindingAgent_CPU->rooms.push_back(&pmm.roomsInMap[x][y]);
         }
     }
-    pathfindingAgent->FindPath(pmm.roomsInMap[0][0].nodes[pmm.xRoomDimension / 2][pmm.yRoomDimension / 2].position, pmm.roomsInMap[2][1].nodes[pmm.xRoomDimension / 2][pmm.yRoomDimension / 2].position);
-    pathfindingAgent->PrintRoute();
+    pathfindingAgent_CPU->FindPath(pmm.roomsInMap[0][0].nodes[pmm.xRoomDimension / 2][pmm.yRoomDimension / 2].position, pmm.roomsInMap[1][1].nodes[20][20].position);
+    pathfindingAgent_CPU->PrintRoute();
 
     std::for_each(threads.begin(), threads.end(), [](std::thread& t)
         {
@@ -74,6 +72,33 @@ void PathfindingVisualisation::Init(Input* in, sf::RenderWindow* wind,sf::View* 
 void PathfindingVisualisation::Update()
 {
     addViewCenter = sf::Vector2f(0, 0);
+    if (editMap && toggle)
+    {
+        toggle = 0;
+        if (startSet)
+        {
+            startSet = 0;
+            pathfindingAgent_CPU->ResetRoute();
+            pathfindingAgent_CPU->EditNode(startPosition, Obstacle);
+            PathfindUpdate(pathfindingAgent_CPU->root->position, pathfindingAgent_CPU->target->position);
+        }
+        if (endSet)
+        {
+            endSet = 0;
+            pathfindingAgent_CPU->ResetRoute();
+            pathfindingAgent_CPU->EditNode(endPosition, Free);
+            PathfindUpdate(pathfindingAgent_CPU->root->position, pathfindingAgent_CPU->target->position);
+
+        }
+        return;
+    }
+    if (startSet && endSet && toggle)
+    {
+        toggle = 0;
+        endSet = 0;
+        PathfindUpdate(startPosition, endPosition);
+        pathfindingAgent_CPU->man = true;
+    }
 }
 
 void PathfindingVisualisation::HandleInput()
@@ -121,6 +146,37 @@ void PathfindingVisualisation::HandleInput()
 
     }
     viewCenter += addViewCenter;
+
+    if (input->isLeftMouseDown())
+    {
+        int roomOffsetX = window->getSize().x * position.x;
+        int roomOffsetY = window->getSize().y * position.y;
+        int wx = window->getSize().x / 100;
+        int wy = window->getSize().y / 100;
+        int xMousePos = floor((input->getMouseX() + roomOffsetX) / wx);
+        int yMousePos = floor((input->getMouseY() + roomOffsetY)/ wy);
+
+        startPosition = Vector2<int>(xMousePos, yMousePos);
+        startSet = 1; 
+        toggle = 1;
+    }    
+    if (input->isRightMouseDown())
+    {
+        int roomOffsetX = window->getSize().x * position.x;
+        int roomOffsetY = window->getSize().y * position.y;
+        int wx = window->getSize().x / 100;
+        int wy = window->getSize().y / 100;
+        int xMousePos = floor((input->getMouseX() + roomOffsetX) / wx);
+        int yMousePos = floor((input->getMouseY() + roomOffsetY) / wy);
+
+        endPosition = Vector2<int>(xMousePos, yMousePos);
+        endSet = 1;
+        toggle = 1;
+    }
+    if (input->isPressed(sf::Keyboard::LShift))
+    {
+        editMap = !editMap;
+    }
 }
 
 void PathfindingVisualisation::Render()
@@ -158,4 +214,11 @@ void PathfindingVisualisation::UpdateObjects(Vector2<int> mapArray, ProceduralMa
 
         }
     }
+}
+
+void PathfindingVisualisation::PathfindUpdate(Vector2<int> start, Vector2<int> end)
+{
+    pathfindingAgent_CPU->FindPath(start, end);
+    pathfindingAgent_CPU->PrintRoute();
+    UpdateObjects(position, &pmm, &rectDraw);
 }

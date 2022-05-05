@@ -5,6 +5,8 @@
 /////////Starting 15/04/2022
 //////// Most Recent Update 20/04/2022
 //////// Most Recent change: Parallelised Update Object function
+
+//TODO: Allow a slow mode and implement new node types(open set closed set)
 #pragma once
 #ifndef PATHFINDINGVISUALISATION_H
 
@@ -15,6 +17,7 @@
 #include "VectorPositions.h"
 #include "ProceduralMapManager.h"
 #include "A_Star_PathfindingCPU.h"
+#include "A_Star_PathfindingGPU.h"
 
 class PathfindingVisualisation
 {
@@ -27,6 +30,7 @@ public:
 
 
 	void UpdateObjects(Vector2<int> mapArray, ProceduralMapManager* pmm, std::vector<sf::RectangleShape>* drawableShapes);
+	void PathfindUpdate(Vector2<int> start, Vector2<int> end);
 	sf::RenderWindow* window;
 	sf::View* view;
 	Input* input;
@@ -40,7 +44,15 @@ public:
 	sf::Vector2f addViewCenter;
 
 
-	A_Star_Pathfinding_Defined_SegmentedCPU* pathfindingAgent;
+	A_Star_Pathfinding_Defined_SegmentedGPU* pathfindingAgent_CPU;
+	//A_Star_Pathfinding_Defined_Segmented* pathfindingAgent_NORMAL;
+
+
+	//User Interaction
+	bool startSet = false; Vector2<int> startPosition;
+	bool endSet = false; Vector2<int> endPosition;
+	bool toggle = false;
+	bool editMap = false;
 };
 
 #endif // !PATHFINDINGVISUALISATION

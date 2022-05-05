@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="A_Star_Pathfinding.cpp" />
     <ClCompile Include="A_Star_PathfindingCPU.cpp" />
+    <ClCompile Include="A_Star_PathfindingGPU.cpp" />
     <ClCompile Include="CellularAutomata.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Node.cpp" />
@@ -170,6 +171,7 @@
   <ItemGroup>
     <ClInclude Include="A_Star_Pathfinding.h" />
     <ClInclude Include="A_Star_PathfindingCPU.h" />
+    <ClInclude Include="A_Star_PathfindingGPU.h" />
     <ClInclude Include="CellularAutomata.h" />
     <ClInclude Include="CustomLoader.h" />
     <ClInclude Include="Input.h" />

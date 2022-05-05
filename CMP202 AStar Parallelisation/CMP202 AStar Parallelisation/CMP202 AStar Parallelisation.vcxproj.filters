@@ -57,6 +57,9 @@
     <ClCompile Include="A_Star_PathfindingCPU.cpp">
       <Filter>Source Files\Pathfinding</Filter>
     </ClCompile>
+    <ClCompile Include="A_Star_PathfindingGPU.cpp">
+      <Filter>Source Files\Pathfinding</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomLoader.h">
@@ -90,6 +93,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="A_Star_PathfindingCPU.h">
+      <Filter>Source Files\Pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="A_Star_PathfindingGPU.h">
       <Filter>Source Files\Pathfinding</Filter>
     </ClInclude>
   </ItemGroup>

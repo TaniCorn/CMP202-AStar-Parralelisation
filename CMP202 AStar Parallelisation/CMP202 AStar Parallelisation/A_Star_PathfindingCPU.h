@@ -15,19 +15,7 @@
 #include <queue>
 #include "PathfindingMap.h"
 #include "A_Star_Pathfinding.h"
-/// <summary>
-/// Checks the smallest fcost, smallest h cost
-/// </summary>
-//struct ReverseComparator {
-//public:
-//	bool operator ()(const Node* a, const Node* b) const {
-//		if (a->GetFCost() == b->GetFCost())
-//		{
-//			return a->GetHCost() > b->GetHCost();
-//		}
-//		return (a->GetFCost() < b->GetFCost());
-//	}
-//};
+
 
 
 /// <summary>
@@ -35,85 +23,90 @@
 /// </summary>
 class Base_A_Star_PathfindingCPU {
 public:
-	Node* root;//Start node
 	Node* target;//End node
-	Room* currentRoom;//Contains Obstacle locations
-
-	int iterations;//For Debug and checking
-
+	Node* root;//Start node
+	bool man = false;
 	std::vector<Room*> rooms;//Rooms we're allowed to traverse
-
-
-	#pragma region MANDATORY_BASE_FUNCTIONS
-	void SetCurrentRoom(Room* nm) {
-		currentRoom = nm;
-	}
+	#pragma region FUNCTIONS_TO_CALL
+	/// <summary>
+	/// Set the rooms that the agent can travel through and search.
+	/// </summary>
 	void SetTraversableRooms(std::vector<Room*> rooms) {
 		this->rooms = rooms;
 	}
+
+	/// <summary>
+	/// Resets any 'Path' nodes back to their default node
+	/// </summary>
+	void ResetRoute();
 	/// <summary>
 	/// Find a path using the position of self and target
 	/// </summary>
-	/// <typeparam name="T"></typeparam>
-	/// <param name="startPos"></param>
-	/// <param name="endPos"></param>
-	template <typename T> void FindPath(Vector2<T> startPos, Vector2<T> endPos) {
+	void FindPath(Vector2<int> startPos, Vector2<int> endPos) {
+		ResetRoute();
 		startPos = Vector2<int>(startPos);
 		endPos = Vector2<int>(endPos);
-
-		if(!SetUpStartAndEndNodes(startPos, endPos));
-		if(!AStarAlgorithm());
+		
+		if (!SetUpStartAndEndNodes(startPos, endPos)) {
+			std::cout << "STARTNODEENDNODE FAILED!" << std::endl;
+			return;
+		}
+		if(!AStarAlgorithm())
+			std::cout << "PATHFINDING FAILED!" << std::endl;
 	};	
+	/// <summary>
+	/// Changes any 'Free' nodes - that are in a recursive 'target.parent' node - to 'Path' nodes
+	/// </summary>
+	void PrintRoute();
+	#pragma endregion
+
+
+	/// <summary>
+	/// Change a node at the given location to be a different type
+	/// </summary>
+	void EditNode(Vector2<int> nodePos, NodeType typeToChangeTo);
+
+	//DEBUGGING
+	/// <summary>
+	/// For debugging purposes. Prints gCost, fCost, and position of a node.
+	/// </summary>
+	void PrintNode(Node* n) {
+		std::cout << "GCost:" << n->GetGCost() << " | FCost:" << n->GetFCost() << " | Position:" << n->position << std::endl;
+	}
+
 
 protected:
+	Room* startRoom;//Room that the start node is in
+
+
 	/// <summary>
-	/// Translates the positions to the node format, and assigns each position their node.
+	/// Finds the corresponding nodes of each position and assigns them to root and target. 
+	/// <para>Also sets up startRoom.</para>
 	/// </summary>
-	/// <param name="startPos"></param>
-	/// <param name="endPos"></param>
 	virtual bool SetUpStartAndEndNodes(Vector2<int> startPos, Vector2<int> endPos);
+
 	/// <summary>
 	/// A star algorithm
 	/// </summary>
 	virtual bool AStarAlgorithm() = 0;
 
+	/// <summary>
+	/// Finds the corresponding node at the coordinates given. Searches all available rooms.
+	/// </summary>
 	Node* GetNodeFromPosition(Vector2<int> position);
+
+	/// <summary>
+	/// Checks if the position is within room bounds
+	/// </summary>
+	static bool IsNodeInRoom(const RoomStruct& nm, const Vector2<int> position);
 private:
 	/// <summary>
-	/// Helper function for SetUpStartAndEndNodes()
+	///	If the nodes position exists in the room, return the node.
+	/// <para>Helper function for SetUpStartAndEndNodes()</para>
 	/// </summary>
-	/// <param name="pos"></param>
-	/// <param name="rm"></param>
-	/// <returns></returns>
 	Node* FindNodeInRoom(Vector2<int> pos, Room* rm);
 
-	#pragma endregion
-public:
-	#pragma region HELPER_FUNCTIONS
-	static bool IsNodeInRoom(const RoomStruct& nm, const Node& n);
-	static bool IsNodeInRoom(const RoomStruct& nm, const Vector2<int> position);
-	#pragma endregion
 
-
-	/// <summary>
-	/// For Debuggin purposes
-	/// </summary>
-	void PrintPath() {
-
-		Node* current = target;
-		std::cout << " It " << iterations << "Times it took" << std::endl;
-
-		while (current->GetParent() != nullptr)
-		{
-			current = current->GetParent();
-			std::cout << current->position << std::endl;
-			std::cout << current->GetGCost() << std::endl;
-		}
-	};
-	void PrintNode(Node* n) {
-		std::cout << "GCost:" << n->GetGCost() << " | FCost:" << n->GetFCost() << " | Position:" << n->position << std::endl;
-	}
-	void PrintRoute();
 };
 
 /// <summary>
@@ -124,9 +117,6 @@ public:
 	A_Star_Pathfinding_Defined_SegmentedCPU() {};
 	~A_Star_Pathfinding_Defined_SegmentedCPU() {
 	};
-
-	std::set<Node*, ReverseComparator> toSearch;
-	std::set<Node*> searched;
 
 
 private:

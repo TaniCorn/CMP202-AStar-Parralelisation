@@ -77,38 +77,60 @@ public:
 
 public:
 #pragma region DISTANCES
-	/// <summary>
-/// The MANHATTAN distance from this node and the given coordinates (x and y)
-/// </summary>
-/// <returns>MANHATTAN DISTANCE</returns>
-	int DistanceFromM(int x, int y) { return (abs(x - position.x) + abs(y - position.y)); }
-	/// <summary>
-	/// The MANHATTAN distance from this node and the given vector (position.x and position.y)
-	/// </summary>
-	/// <returns>MANHATTAN DISTANCE</returns>
-	int DistanceFromM(const Vector2<int>& pos) {
-		int total = (abs(pos.x - position.x) + abs(pos.y - position.y));
-		return total;
-	}
-	/// <summary>
-	/// The MANHATTAN distance between two given nodes
-	/// <para> From Node A to Node B</para>
-	/// </summary>
-	/// <param name="Node A"></param>
-	/// <param name="Node B"></param>
-	/// <returns>MANHATTAN DISTANCE</returns>
-	static int DistanceBetweenM(const Node& a, const Node& b) {
-		int total = (abs(a.position.x - b.position.x) + abs(a.position.y - b.position.y));
-		return total;
+//	/// <summary>
+///// The MANHATTAN distance from this node and the given coordinates (x and y)
+///// </summary>
+///// <returns>MANHATTAN DISTANCE</returns>
+//	int DistanceFromM(float x, float y) { return (abs(x - position.x) + abs(y - position.y)); }
+//	/// <summary>
+//	/// The MANHATTAN distance from this node and the given vector (position.x and position.y)
+//	/// </summary>
+//	/// <returns>MANHATTAN DISTANCE</returns>
+//	int DistanceFromM(const Vector2<int>& pos) {
+//		int total = (abs(pos.x - position.x) + abs(pos.y - position.y));
+//		return total;
+//	}
+//	/// <summary>
+//	/// The MANHATTAN distance between two given nodes
+//	/// <para> From Node A to Node B</para>
+//	/// </summary>
+//	/// <param name="Node A"></param>
+//	/// <param name="Node B"></param>
+//	/// <returns>MANHATTAN DISTANCE</returns>
+//	static int DistanceBetweenM(const Node& a, const Node& b) {
+//		int total = (abs(a.position.x - b.position.x) + abs(a.position.y - b.position.y));
+//		return total;
+//	}	
+
+	//int DistanceFromE(int x, int y) { return (abs(x - position.x) + abs(y - position.y)); }
+
+	//float DistanceFromE(const Vector2<int>& pos) {
+	//	int total = position.DistanceFrom(pos);//(abs(pos.x - position.x) + abs(pos.y - position.y));
+	//	return total;
+	//}
+	//static int DistanceBetweenE(const Node& a, const Node& b) {
+	//	int total = Vector2<int>::DistanceBetween(a.position, b.position); //(abs(a.position.x - b.position.x) + abs(a.position.y - b.position.y));
+	//	return total;
+	//}
+
+	//Credit: Sebastian Lague
+	static int GetDistance(const Node& a, const Node& b) {
+		int distX = abs(a.position.x - b.position.x);
+		int distY = abs(a.position.y - b.position.y);
+
+		if (distX > distY)
+			return (14 * distY + (10 * (distX - distY)));
+		return (14 * distX + (10 * (distY - distX)));
+
 	}
 #pragma endregion
 
 
 #pragma region CHARACTERISTICS
 protected:
-	float fCost = -1;//totalCost
-	float gCost = -1;//cost of current path
-	float hCost = -1;//how far away we are from target Node
+	int fCost = -1;//totalCost
+	int gCost = -1;//cost of current path
+	int hCost = -1;//how far away we are from target Node
 public:
 	Vector2<int> position = Vector2<int>(0, 0);//Our position, it's unique
 
@@ -123,7 +145,7 @@ public:
 public:
 #pragma region GETTERS/SETTERS
 	void SetHCost(int h) {
-		hCost = h * inclination;
+		hCost = h;// *inclination;
 	}
     int GetHCost() const {
 		return hCost;

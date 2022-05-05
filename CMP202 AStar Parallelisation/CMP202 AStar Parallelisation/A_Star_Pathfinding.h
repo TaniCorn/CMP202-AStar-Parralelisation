@@ -4,8 +4,6 @@
 /////////Starting 01/12/2021
 //////// Most Recent Update 18/04/2022
 //////// Most Recent change: Cleanup Done
-//////// TODO: Get a lot of error checking and catch cases where the path cannot be found. Currently the algorithms mostly assume it's possible. Make undefined have more directions
-//////// TODO: Ideally, for actual use, the algorithm won't update continually only when(player has moved to a different room, player has moved position in same room);
 
 //This has been done while thinking of using it for a 2d game utilising square rooms where enemies can spawn. 
 //This was inspired by my own project last year for CMP105, and as such some of the terminology/comments may refer to that instead of a general term, afterall this has been designed around that use case.
@@ -28,7 +26,14 @@ public:
 	bool operator ()(const Node* a, const Node* b) const {
 		if (a->GetFCost() == b->GetFCost())
 		{
-			return a->GetHCost() > b->GetHCost();
+			return a < b;
+		}
+		if (a->position.x == b->position.x)
+		{
+			if (a->position.y == b->position.y)
+			{
+				return a < b;
+			}
 		}
 		return (a->GetFCost() < b->GetFCost());
 	}
