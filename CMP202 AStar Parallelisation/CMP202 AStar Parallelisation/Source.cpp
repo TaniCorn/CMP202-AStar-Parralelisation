@@ -71,11 +71,13 @@ void sfmlEvents(sf::RenderWindow* window, Input* in) {
 
 int main() {
     srand(time(0));
+
     sf::View view;
     sf::RenderWindow window(sf::VideoMode(1000, 1000), "A Star Visualisation");
     Input* input;
     input = new Input();
 
+    //Level for pathfinding, input, visuals
     PathfindingVisualisation pathfindingVisuals;
     pathfindingVisuals.Init(input, &window, &view);
 

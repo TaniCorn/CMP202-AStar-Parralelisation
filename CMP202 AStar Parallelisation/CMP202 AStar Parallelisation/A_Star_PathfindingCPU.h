@@ -1,10 +1,13 @@
 //////////
-//////////A Star Pathfinding CPU files // PathfindingMap.h required // Derived from A_Star_Pathfinding.h
+//////////A Star Pathfinding CPU files //Derived from CMP201 Project A* Segmented.
+//////////This version of A* is a parallelised version of the previous CMP201 project, with many fixes to the original code and improvements.
 //////////Written by Tanapat Somrid 
 /////////Starting 19/04/2022
-//////// Most Recent Update 20/04/2022
-//////// Most Recent change: Cleanup Done
+//////// Most Recent Update 07/05/2022
+//////// Most Recent change: Cleanup, removed dependency on old files, added FindPath(...) function to allow normal ints rather than Vector2<int>
 //////// 
+//Current Bug List:
+//Will cause a GetParent() Error - When setting target node to a 'RouteNode'
 
 #pragma once
 
@@ -13,19 +16,42 @@
 
 #include <stack>
 #include <queue>
-#include "PathfindingMap.h"
-#include "A_Star_Pathfinding.h"
+#include "Rooms.h"
+#include "VectorPositions.h"
 
-
+struct ReverseComparator {
+public:
+	bool operator ()(const Node* a, const Node* b) const {
+		//If they have the same fCost, they could be the same return if they are or not. 
+		//If they are the same, it won't insert it. If they are not, it will be inserted at the current location. 
+		//This is needed to prevent non duplicates from not being inserted.
+		if (a->GetFCost() == b->GetFCost())
+		{
+			return a < b;
+		}
+		//If they have the exact same position they are the same so therefore get rid of one
+		if (a->xPosition == b->xPosition)
+		{
+			if (a->yPosition == b->yPosition)
+			{
+				return a < b;
+			}
+		}
+		//Repositioning based on fCost
+		return (a->GetFCost() < b->GetFCost());
+	}
+};
 
 /// <summary>
-/// Base A Star Class, provides base functionality, virtual functions and helper functions. Also provides limited member variables
+/// Base A*. Provides functionality and data that is absolutely required. Does not contain the A* algorithm itself.
+/// <para>Some functions are parallelised already</para>
 /// </summary>
 class Base_A_Star_PathfindingCPU {
 public:
+	int threadsToUse = std::thread::hardware_concurrency();
 	Node* target;//End node
 	Node* root;//Start node
-	bool man = false;
+
 	std::vector<Room*> rooms;//Rooms we're allowed to traverse
 	#pragma region FUNCTIONS_TO_CALL
 	/// <summary>
@@ -44,9 +70,8 @@ public:
 	/// </summary>
 	void FindPath(Vector2<int> startPos, Vector2<int> endPos) {
 		ResetRoute();
-		startPos = Vector2<int>(startPos);
-		endPos = Vector2<int>(endPos);
 		
+		//Parallelised
 		if (!SetUpStartAndEndNodes(startPos, endPos)) {
 			std::cout << "STARTNODEENDNODE FAILED!" << std::endl;
 			return;
@@ -54,6 +79,19 @@ public:
 		if(!AStarAlgorithm())
 			std::cout << "PATHFINDING FAILED!" << std::endl;
 	};	
+	void FindPath(int xStart,int yStart,int xEnd, int yEnd) {
+		ResetRoute();
+		Vector2<int> startPos = Vector2<int>(xStart, yStart);
+		Vector2<int> endPos = Vector2<int>(xEnd, yEnd);
+
+		//Parallelised
+		if (!SetUpStartAndEndNodes(startPos, endPos)) {
+			std::cout << "STARTNODEENDNODE FAILED!" << std::endl;
+			return;
+		}
+		if (!AStarAlgorithm())
+			std::cout << "PATHFINDING FAILED!" << std::endl;
+	};
 	/// <summary>
 	/// Changes any 'Free' nodes - that are in a recursive 'target.parent' node - to 'Path' nodes
 	/// </summary>
@@ -70,9 +108,9 @@ public:
 	/// <summary>
 	/// For debugging purposes. Prints gCost, fCost, and position of a node.
 	/// </summary>
-	void PrintNode(Node* n) {
-		std::cout << "GCost:" << n->GetGCost() << " | FCost:" << n->GetFCost() << " | Position:" << n->position << std::endl;
-	}
+	//void PrintNode(Node* n) {
+	//	std::cout << "GCost:" << n->GetGCost() << " | FCost:" << n->GetFCost() << " | Position:" << n->position << std::endl;
+	//}
 
 
 protected:
@@ -110,7 +148,8 @@ private:
 };
 
 /// <summary>
-/// Optimises room functionality, when there are many obstacles to go through and the path may be more obscure than thought.
+/// Extends upon Base A* to provide intended functionality.
+/// <para>Is parallelised by the CPU to speed up pathfinding process</para>
 /// </summary>
 class A_Star_Pathfinding_Defined_SegmentedCPU : public Base_A_Star_PathfindingCPU {
 public:

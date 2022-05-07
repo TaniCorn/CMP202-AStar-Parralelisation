@@ -2,9 +2,13 @@
 
 #include <future>
 #include "A_Star_PathfindingCPU.h"
+//#include <chrono>
+//std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+//auto ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
+//std::cout << ms << std::endl;
+//std::cout << "Main thread exiting";
 
-
-const int threadsToUse = 6;//Amount of threads to run for farming
+//const int threadsToUse = 6;//Amount of threads to run for farming
 //const int neighbourModifier = 1;
 
 #pragma region BASE_ASTAR
@@ -30,7 +34,7 @@ bool Base_A_Star_PathfindingCPU::SetUpStartAndEndNodes(Vector2<int> startPos, Ve
 	//Set up root room
 	for (Room* var : rooms)
 	{
-		if (IsNodeInRoom(*var, startNode->position))
+		if (IsNodeInRoom(*var, Vector2<int>(startNode->xPosition, startNode->yPosition)))
 		{
 			startRoom = var;
 			return true;
@@ -60,7 +64,7 @@ Node* Base_A_Star_PathfindingCPU::GetNodeFromPosition(Vector2<int> position)
 Node* Base_A_Star_PathfindingCPU::FindNodeInRoom(Vector2<int> pos, Room* rm)
 {
 	//Trying to get the reference of the room position back to 0 to equalise everything
-	Vector2<int> balance = rm->GetLowestCoord();
+	Vector2<int> balance = Vector2<int>(rm->GetLowestXCoord(), rm->GetLowestYCoord());
 	Vector2<int> tempPos = pos;
 	tempPos -= balance;
 
@@ -77,10 +81,10 @@ Node* Base_A_Star_PathfindingCPU::FindNodeInRoom(Vector2<int> pos, Room* rm)
 //Collision detection code for finding if position is within certain bounds
 bool Base_A_Star_PathfindingCPU::IsNodeInRoom(const RoomStruct& nm, const Vector2<int> position)
 {
-	if (nm.GetHighestCoord().x < position.x) { return false; }
-	if (nm.GetLowestCoord().x > position.x) { return false; }
-	if (nm.GetHighestCoord().y < position.y) { return false; }
-	if (nm.GetLowestCoord().y > position.y) { return false; }
+	if (nm.GetHighestXCoord() < position.x) { return false; }
+	if (nm.GetLowestXCoord() > position.x) { return false; }
+	if (nm.GetHighestYCoord() < position.y) { return false; }
+	if (nm.GetLowestYCoord() > position.y) { return false; }
 
 	return true;
 }
@@ -165,7 +169,7 @@ bool A_Star_Pathfinding_Defined_SegmentedCPU::AStarAlgorithm()
 	std::queue<Node*> tempTargets;//temporary target nodes that join rooms together towards main target node - these derive from the 'route' nodes that connect rooms
 
 	//Search for a room path and push the 'Route' nodes into tempTargets
-	if (!IsNodeInRoom(*startRoom, target->position)) {
+	if (!IsNodeInRoom(*startRoom, Vector2<int>(target->xPosition, target->yPosition))) {
 		tempTargets = FindRouteNodePaths(BruteForcePathfindMaps());//temporary target nodes that join rooms together towards main target node
 	}
 	else {
@@ -197,6 +201,7 @@ std::queue<Node*> A_Star_Pathfinding_Defined_SegmentedCPU::FindRouteNodePaths(st
 std::stack<RoomStruct*> A_Star_Pathfinding_Defined_SegmentedCPU::BruteForcePathfindMaps()
 {
 	//TODO: All rooms are linked but some paths are unavailable. Maybe do a preliminary check of some sort?
+	
 	//We will start searching from our start room until we have a path from start to end.
 
 	std::stack<RoomStruct*> mapRoute;//Rooms we need to go through
@@ -221,7 +226,7 @@ std::stack<RoomStruct*> A_Star_Pathfinding_Defined_SegmentedCPU::BruteForcePathf
 			neighbour->SetParentRoom(currentRoomToSearch);
 
 			//If room is our target, start pushing path into mapRoute//otherwise add it to the open set
-			if (IsNodeInRoom(*neighbour, target->position))
+			if (IsNodeInRoom(*neighbour, Vector2<int>(target->xPosition, target->yPosition)))
 			{
 				//Push room path into mapRoute and return
 				RoomStruct* route = neighbour;
@@ -242,19 +247,23 @@ std::stack<RoomStruct*> A_Star_Pathfinding_Defined_SegmentedCPU::BruteForcePathf
 }
 Node* A_Star_Pathfinding_Defined_SegmentedCPU::FindRouteNode(std::stack<RoomStruct*>& mapRoute)
 {
+	//Searches through all the Rooms and collects the Route Nodes that connect them to eachother
+
 	RoomStruct* map = mapRoute.top();
 	mapRoute.pop();
+	//Same Room search
 	if (mapRoute.size() == 0)
 	{
 		return nullptr;
 	}
 
+	//Search all the Route Nodes of the Room to check if they teleport to the next Room
 	for (auto routeNode : map->GetRouteNodes())
 	{
 		Node* nodeInNextRoom = routeNode->nodeToTeleportTo;
 		if (nodeInNextRoom != nullptr)
 		{
-			if (IsNodeInRoom(*mapRoute.top(), nodeInNextRoom->position))//If the routeNode's teleporting node is in the next room, return the routeNode
+			if (IsNodeInRoom(*mapRoute.top(), Vector2<int>(nodeInNextRoom->xPosition, nodeInNextRoom->yPosition)))//If the routeNode's teleporting node is in the next room, return the routeNode
 			{
 				return routeNode;
 			}
@@ -347,17 +356,6 @@ bool A_Star_Pathfinding_Defined_SegmentedCPU::DefaultAStar(Node* startNode, Node
 		//If we found end, stop pathfinding
 		if (Node::GetDistance(*current, *endNode) < 1)
 		{
-			if (man)
-			{
-				//std::vector<Node*> check;
-				//Node* ci; ci = current;
-				//while (ci->parentNode != nullptr)
-				//{
-				//	check.push_back(ci);
-				//	ci = ci->parentNode;
-				//}
-				return true;
-			}
 			return true;
 		}
 		std::set<Node*>::iterator it = open.begin();//For some reason, it won't erase some points, so we need to point to the first one to erase instead of erasing the specific node
@@ -388,22 +386,22 @@ void A_Star_Pathfinding_Defined_SegmentedCPU::CheckNeighbours(Node* current, Nod
 			continue;
 		}
 
-		if (neighbour->position == targetNode->position)
+		//Target Node
+		if (neighbour->xPosition == targetNode->xPosition && neighbour->yPosition == targetNode->yPosition)
 		{
 			targetNode->SetParent(current);
 			targetNode->SetFCost(0);
 		}
 
 		int newGCost = current->GetGCost() + Node::GetDistance(*neighbour, *current);
-		int newHCost = Node::GetDistance(*neighbour, *targetNode);
-		int newFCost = newGCost + newHCost;
-
 
 		bool inToSearch = open->find(neighbour) != open->end();
 		//If neighbour is in either open, and the new path is better, recalculate
 		if (inToSearch && neighbour->GetGCost() > newGCost)
 		{
-			open->erase(neighbour);
+			int newHCost = Node::GetDistance(*neighbour, *targetNode);
+			int newFCost = newGCost + newHCost;
+			open->erase(neighbour);//This is needed otherwise it will not re-order the element when new values are put in
 			neighbour->SetGCost(newGCost);
 			neighbour->SetHCost(newHCost);
 			neighbour->SetFCost(newFCost);
@@ -413,6 +411,8 @@ void A_Star_Pathfinding_Defined_SegmentedCPU::CheckNeighbours(Node* current, Nod
 		//If neighbour is not in open, set
 		if (!inToSearch)
 		{
+			int newHCost = Node::GetDistance(*neighbour, *targetNode);
+			int newFCost = newGCost + newHCost;
 			neighbour->SetGCost(newGCost);
 			neighbour->SetHCost(newHCost);
 			neighbour->SetFCost(newFCost);
@@ -555,11 +555,6 @@ void A_Star_Pathfinding_Defined_SegmentedCPU::CheckNeighbours(Node* current, Nod
 //	});
 //
 #pragma endregion
-
-//std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-//auto ms = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
-//	std::cout << ms << std::endl;
-	//std::cout << "Main thread exiting";
 }
 
 #pragma endregion

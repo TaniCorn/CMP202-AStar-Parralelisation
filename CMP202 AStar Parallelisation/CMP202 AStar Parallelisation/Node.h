@@ -1,19 +1,19 @@
 //////////
-//////////Node Map files
+//////////Node
+////////// 
 //////////Written by Tanapat Somrid 
 /////////Starting 08/12/2021
-//////// Most Recent Update 18/04/2022
-//////// Most Recent change: Cleaning Done
+//////// Most Recent Update 07/05/2022
+//////// Most Recent change: Cleanup, Removed usage of Vector2<int> will have knock on effect to other classes. Preferring Primitive data types when applicable
 
 
 #pragma once
 #ifndef NODE_H
 #define NODE_H
 
-#include "VectorPositions.h"
-#include <vector>
-
-static int inclination = 2;//How weighted should our path be towards the target node?
+#include <math.h>
+//Theoritically if the path is relatively straightforward with only a few obstacles, this inclination should make it faster when used with hCost
+static int inclination = 2;//How weighted should our path be towards the target node? 
 
 enum NodeType
 {
@@ -23,6 +23,8 @@ enum NodeType
 
 	Path = 3,//Will be used for the main path
 	//Possibility to add a step by step walkthrough, we can add more variations later
+	//Open = 4,
+	//Closed = 5
 };
 
 /// <summary>
@@ -57,66 +59,19 @@ public:
 	~Node() {
 
 	}
-	/////////Copy Constructors
 
-	/// <summary>
-	/// Copy Constructor for assignment
-	/// </summary>
-	/// <param name=""></param>
-	/// <returns></returns>
-	Node(const Node& a) { fCost = a.fCost; gCost = a.gCost; hCost = a.hCost; position = a.position; nodeType = a.nodeType; parentNode = a.parentNode; for (int i = 0; i < 8; i++) { neighbours[i] = a.neighbours[i]; }; }
-	Node& operator =(const Node& copy) { fCost = copy.fCost; gCost = copy.gCost; hCost = copy.hCost; position = copy.position; nodeType = copy.nodeType; parentNode = copy.parentNode; for (int i = 0; i < 8; i++) { neighbours[i] = copy.neighbours[i]; }; return *this; }
-
-	void SetNullNeighbours() {
-		for (int i = 0; i < 8; i++)
-		{
-			neighbours[i] = nullptr;
-		}
-	}
+	//Copy and Assignment Constructors
+	Node(const Node& a) { fCost = a.fCost; gCost = a.gCost; hCost = a.hCost; xPosition = a.xPosition; yPosition = a.yPosition; nodeType = a.nodeType; parentNode = a.parentNode; for (int i = 0; i < 8; i++) { neighbours[i] = a.neighbours[i]; }; }
+	Node& operator =(const Node& copy) { fCost = copy.fCost; gCost = copy.gCost; hCost = copy.hCost; xPosition = copy.xPosition; yPosition = copy.yPosition; nodeType = copy.nodeType; parentNode = copy.parentNode; for (int i = 0; i < 8; i++) { neighbours[i] = copy.neighbours[i]; }; return *this; }
 #pragma endregion
 
 public:
 #pragma region DISTANCES
-//	/// <summary>
-///// The MANHATTAN distance from this node and the given coordinates (x and y)
-///// </summary>
-///// <returns>MANHATTAN DISTANCE</returns>
-//	int DistanceFromM(float x, float y) { return (abs(x - position.x) + abs(y - position.y)); }
-//	/// <summary>
-//	/// The MANHATTAN distance from this node and the given vector (position.x and position.y)
-//	/// </summary>
-//	/// <returns>MANHATTAN DISTANCE</returns>
-//	int DistanceFromM(const Vector2<int>& pos) {
-//		int total = (abs(pos.x - position.x) + abs(pos.y - position.y));
-//		return total;
-//	}
-//	/// <summary>
-//	/// The MANHATTAN distance between two given nodes
-//	/// <para> From Node A to Node B</para>
-//	/// </summary>
-//	/// <param name="Node A"></param>
-//	/// <param name="Node B"></param>
-//	/// <returns>MANHATTAN DISTANCE</returns>
-//	static int DistanceBetweenM(const Node& a, const Node& b) {
-//		int total = (abs(a.position.x - b.position.x) + abs(a.position.y - b.position.y));
-//		return total;
-//	}	
-
-	//int DistanceFromE(int x, int y) { return (abs(x - position.x) + abs(y - position.y)); }
-
-	//float DistanceFromE(const Vector2<int>& pos) {
-	//	int total = position.DistanceFrom(pos);//(abs(pos.x - position.x) + abs(pos.y - position.y));
-	//	return total;
-	//}
-	//static int DistanceBetweenE(const Node& a, const Node& b) {
-	//	int total = Vector2<int>::DistanceBetween(a.position, b.position); //(abs(a.position.x - b.position.x) + abs(a.position.y - b.position.y));
-	//	return total;
-	//}
-
-	//Credit: Sebastian Lague
+	//After noticing my mistake of using floats with the previous int functions, i tried using floats but alas, float comparisons provide inaccurate results.
+	//So I had to switch to an int *10 factor, this function provides a easy Euclidean distance calculation. Many thanks to my all time favourite Sebastian Lague
 	static int GetDistance(const Node& a, const Node& b) {
-		int distX = abs(a.position.x - b.position.x);
-		int distY = abs(a.position.y - b.position.y);
+		int distX = abs(a.xPosition - b.xPosition);
+		int distY = abs(a.yPosition - b.yPosition);
 
 		if (distX > distY)
 			return (14 * distY + (10 * (distX - distY)));
@@ -132,7 +87,9 @@ protected:
 	int gCost = -1;//cost of current path
 	int hCost = -1;//how far away we are from target Node
 public:
-	Vector2<int> position = Vector2<int>(0, 0);//Our position, it's unique
+	//Vector2<int> position = Vector2<int>(0, 0);//Our position, it's unique
+	int xPosition = 0;
+	int yPosition = 0;
 
 
 	Node* neighbours[8];//Surrounding nodes
@@ -145,34 +102,21 @@ public:
 public:
 #pragma region GETTERS/SETTERS
 	void SetHCost(int h) {
-		hCost = h;// *inclination;
+	hCost = h;// *inclination;
 	}
-    int GetHCost() const {
-		return hCost;
-	}
-	void SetGCost(int g) {
-		gCost = g;
-	}
-	int GetGCost() const {
-		return gCost;
-	}	
+    int GetHCost() const {return hCost;}
+
+	void SetGCost(int g) {	gCost = g;}
+	int GetGCost() const {return gCost;}	
+
 	//Calculates and assigns with inclination
-	void SetFCost() {
-		fCost = hCost + gCost;
-	}
+	void SetFCost() {	fCost = hCost + gCost;}
 	//Not preferred
-	void SetFCost(int f) {
-		fCost = f;
-	}
-	int GetFCost() const {
-		return fCost;
-	}
-	void SetParent(Node* parent) {
-		parentNode = parent;
-	}
-	Node* GetParent() const {
-		return parentNode;
-	}
+	void SetFCost(int f) {	fCost = f;}
+	int GetFCost() const {	return fCost;}
+
+	void SetParent(Node* parent) {	parentNode = parent;}
+	Node* GetParent() const {	return parentNode;}
 #pragma endregion
 
 };
@@ -181,14 +125,11 @@ class TeleportNode : public Node {
 public:
 	Node* nodeToTeleportTo;
 	TeleportNode() { nodeType = Routes; };
-	//Unsure if we currently need to transfer any other data than position
-	//TeleportNode(const Node& a) {  fCost = a.GetFCost(); gCost = a.GetGCost(); hCost = a.GetHCost(); position = a.position; parentNode = a.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = a.neighbours[i]; }; }
-	//TeleportNode(const TeleportNode& a) {  fCost = a.GetFCost(); gCost = a.GetGCost(); hCost = a.GetHCost(); position = a.position; parentNode = a.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = a.neighbours[i]; }; }
-	//TeleportNode& operator =(const Node& copy) { fCost = copy.GetFCost(); gCost = copy.GetGCost(); hCost = copy.GetHCost(); position = copy.position;parentNode = copy.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = copy.neighbours[i]; }; return *this; }
-	//TeleportNode& operator =(const TeleportNode& copy) { fCost = copy.GetFCost(); gCost = copy.GetGCost(); hCost = copy.GetHCost(); position = copy.position; parentNode = copy.parentNode; for (int i = 0; i < 4; i++) { neighbours[i] = copy.neighbours[i]; }; return *this; }	
-	TeleportNode(const Node& a) {  position = a.position; for (int i = 0; i < 8; i++) { neighbours[i] = a.neighbours[i]; }}
-	TeleportNode(const TeleportNode& a) { position = a.position; for (int i = 0; i < 8; i++) { neighbours[i] = a.neighbours[i]; }}
-	TeleportNode& operator =(const Node& copy) { position = copy.position;  for (int i = 0; i < 8; i++) { neighbours[i] = copy.neighbours[i]; }return *this;}
-	TeleportNode& operator =(const TeleportNode& copy) { position = copy.position;  for (int i = 0; i < 8; i++) { neighbours[i] = copy.neighbours[i]; }return *this;}
+
+	//Copy and Assignment Constructors
+	TeleportNode(const Node& a) { xPosition = a.xPosition; yPosition = a.yPosition; for (int i = 0; i < 8; i++) { neighbours[i] = a.neighbours[i]; } }
+	TeleportNode(const TeleportNode& a) { xPosition = a.xPosition; yPosition = a.yPosition; for (int i = 0; i < 8; i++) { neighbours[i] = a.neighbours[i]; }}
+	TeleportNode& operator =(const Node& copy) { xPosition = copy.xPosition; yPosition = copy.yPosition;  for (int i = 0; i < 8; i++) { neighbours[i] = copy.neighbours[i]; }return *this;}
+	TeleportNode& operator =(const TeleportNode& copy) { xPosition = copy.xPosition; yPosition = copy.yPosition;  for (int i = 0; i < 8; i++) { neighbours[i] = copy.neighbours[i]; }return *this;}
 };
 #endif // !NODEMAP_H
