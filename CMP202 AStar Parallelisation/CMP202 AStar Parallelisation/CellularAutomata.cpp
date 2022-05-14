@@ -1,8 +1,6 @@
 #include "CellularAutomata.h"
 #include <iostream>
-/// <summary>
-    /// Generates an 2d array of width and height that has on and off cells .Calls RandomFillMap().ref.MapGenerator and SmoothingMap().ref.MapGenerator. 
-    /// </summary>
+
 void CellularAutomata::GenerateMap(int xDimension, int yDimension)
 {
     width = xDimension; height = yDimension;
@@ -20,9 +18,6 @@ void CellularAutomata::GenerateMap(int xDimension, int yDimension)
     }
 }
 
-/// <summary>
-/// Fills the array with 1's and 0's. If seed is specified, it will not be random however if 'useRandomSeed' is checked, it will be random everytime.
-/// </summary>
 void CellularAutomata::RandomFillMap()
 {
 
@@ -44,9 +39,6 @@ void CellularAutomata::RandomFillMap()
     }
 }
 
-/// <summary>
-/// Smooths out the map and makes it less chaotic. Based on cave generation/Cellular Automata smoothing. This uses the neighbouring cell states to determine what the cell state should be. Allows paths of 1's and 0's. Calls 'GetSurroundingWallCount'.ref.MapGenerator
-/// </summary>
 void CellularAutomata::SmoothingMap()
 {
     //Smooths map
@@ -69,12 +61,6 @@ void CellularAutomata::SmoothingMap()
     }
 }
 
-/// <summary>
-/// Gets surrounding tiles of 'gridX' and 'gridY' in map and checks how many neighbours of the tiles are switched on.
-/// </summary>
-/// <param name="gridX"></param>
-/// <param name="gridY"></param>
-/// <returns>wallCount</returns>
 int CellularAutomata::GetSurroundingWallCount(int gridX, int gridY)
 {
     int wallCount = 0;

@@ -69,31 +69,46 @@ void sfmlEvents(sf::RenderWindow* window, Input* in) {
 	}
 }
 
+
+
+std::condition_variable cv;
+std::mutex lock;
+void RunUpdate(PathfindingVisualisation* pv, sf::RenderWindow* win) {
+    while (win->isOpen())
+    {
+       // std::unique_lock<std::mutex> l(lock);
+        pv->Update();
+        pv->HandleInput();
+        //cv.wait(l);
+        cv.notify_all();
+    }
+}
+
 int main() {
     srand(time(0));
-
+    
     sf::View view;
     sf::RenderWindow window(sf::VideoMode(1000, 1000), "A Star Visualisation");
     Input* input;
     input = new Input();
-
     //Level for pathfinding, input, visuals
     PathfindingVisualisation pathfindingVisuals;
     pathfindingVisuals.Init(input, &window, &view);
+    std::thread updateThread = std::thread(RunUpdate,&pathfindingVisuals, &window);
 
     while (window.isOpen())
     {
         sfmlEvents(&window, input);
         window.setView(view);
-        
-        pathfindingVisuals.Update();
-        pathfindingVisuals.HandleInput();
-        
+        std::unique_lock<std::mutex> l(lock);
+        cv.wait(l);
+
         window.clear(sf::Color(0, 0, 0));
-        //Draw things here:
         pathfindingVisuals.Render();
         window.display();
+
     }
+    updateThread.join();
     return 0;
 }
 

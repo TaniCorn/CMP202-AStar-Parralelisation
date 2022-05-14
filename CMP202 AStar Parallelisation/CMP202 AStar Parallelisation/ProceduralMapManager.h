@@ -23,7 +23,7 @@ public:
 		}
 		delete[] roomsInMap;
 	};
-	bool failsafe = false;//Whens set to true, all rooms have guaranteed connection
+	bool failsafe = true;//Whens set to true, all rooms have guaranteed connection
 	int threadsToUse = std::thread::hardware_concurrency();//Change for different amount of threads
 
 	Room** roomsInMap;

@@ -60,6 +60,10 @@ public:
 	bool endSet = false; Vector2<int> endPosition;
 	bool toggle = false;
 	bool editMap = false;
+
+	//Benchmarking
+	bool automatic = false;
+
 };
 
 #endif // !PATHFINDINGVISUALISATION

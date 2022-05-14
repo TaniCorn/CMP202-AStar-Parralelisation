@@ -1,7 +1,8 @@
 #include "ProceduralMapManager.h"
 #include <vector>
 
-//#include <chrono>
+#include <chrono>
+#include <iostream>
 //std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 //std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
 //auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
@@ -9,6 +10,7 @@
 
 void ProceduralMapManager::GenerateMapGrid()
 {
+	std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 	int	roomXAmount = xDimension;//In case I want to change it...
 	int roomYAmount = yDimension;
 
@@ -65,12 +67,16 @@ void ProceduralMapManager::GenerateMapGrid()
 		{
 		t.join();
 		});
-
+	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+	auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+	std::cout << "ProceduralMapManager::GenerateMapGrid() takes - " << ms << "ms" << std::endl;
+	
 }
 
 void ProceduralMapManager::ConnectRooms()
 {
 	//WARNING: Currently only works with maps set bigger or equal to a 2x2
+	std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 
 	//Horizontal Connected Route Nodes - These will be on the middle left and right sides of the map
 	int horizontal_RightX = xRoomDimension - 2;//2 nodes away from right edge
@@ -135,6 +141,9 @@ void ProceduralMapManager::ConnectRooms()
 			#pragma endregion
 		}
 	}
+	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+	auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+	std::cout << "ProceduralMapManager::ConnectRooms() takes - " << ms << "ms" << std::endl;
 }
 
 

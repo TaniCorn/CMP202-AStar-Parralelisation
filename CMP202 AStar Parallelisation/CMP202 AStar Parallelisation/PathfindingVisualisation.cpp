@@ -15,7 +15,7 @@ void PathfindingVisualisation::Init(Input* in, sf::RenderWindow* wind,sf::View* 
     std::vector<std::thread> threads;
     std::mutex lock;
     int shapeNumber = 0; const int shapesNeeded = 10000;
-    for (int threadIndex = 0; threadIndex < std::thread::hardware_concurrency()/2; threadIndex++)
+    for (int threadIndex = 0; threadIndex < std::thread::hardware_concurrency(); threadIndex++)
     {
         threads.push_back(std::thread([&]() {
 
@@ -41,13 +41,16 @@ void PathfindingVisualisation::Init(Input* in, sf::RenderWindow* wind,sf::View* 
     }
     #pragma endregion
    
+    int threadsToUse = 1;
     //Procedural Map Manager Setup
-    pmm.Init(5, 5, 100, 100);
+    pmm.threadsToUse = threadsToUse;
+    pmm.Init(3, 100, 100, 100);
     pmm.GenerateMapGrid();
     pmm.ConnectRooms();
 
     //Pathfinding agent recieving maps from pmm
     pathfindingAgent_CPU = new A_Star_Pathfinding_Defined_SegmentedCPU();
+    pathfindingAgent_CPU->threadsToUse = threadsToUse;
     for (int y = 0; y < pmm.yDimension; y++)
     {
         for (int x = 0; x < pmm.xDimension; x++)
@@ -74,7 +77,6 @@ void PathfindingVisualisation::Init(Input* in, sf::RenderWindow* wind,sf::View* 
 
 void PathfindingVisualisation::Update()
 {
-    addViewCenter = sf::Vector2f(0, 0);
     //Edit Map - updates current pathfinding route, in case user makes obstacles on route
     if (editMap && toggle)
     {
@@ -107,15 +109,59 @@ void PathfindingVisualisation::Update()
 
 void PathfindingVisualisation::HandleInput()
 {
+    addViewCenter = sf::Vector2f(0, 0);
     input->update();
-
+#pragma region BENCHMARKING_CONTROLS
+    if (input->isPressed(sf::Keyboard::LControl))
+    {
+        std::cout << "The distance currently is " << Node::GetDistance(*pathfindingAgent_CPU->root, *pathfindingAgent_CPU->target) << std::endl;
+    }
+    if (input->isPressed(sf::Keyboard::Escape))
+    {
+        ExportBenchmark::ExportBenchmarkingInfo();
+    }
+    if (input->isPressed(sf::Keyboard::Space))
+    {
+        ExportBenchmark::current->clear();
+    }
+    if (input->isPressed(sf::Keyboard::Num1))
+    {
+        ExportBenchmark::Switch(1);
+        pathfindingAgent_CPU->threadsToUse = 1;
+    }
+    if (input->isPressed(sf::Keyboard::Num2))
+    {
+        ExportBenchmark::Switch(2);
+        pathfindingAgent_CPU->threadsToUse = 2;
+    }
+    if (input->isPressed(sf::Keyboard::Num3))
+    {
+        ExportBenchmark::Switch(4);
+        pathfindingAgent_CPU->threadsToUse = 4;
+    }
+    if (input->isPressed(sf::Keyboard::Num4))
+    {
+        ExportBenchmark::Switch(8);
+        pathfindingAgent_CPU->threadsToUse = 8;
+    }
+    if (input->isPressed(sf::Keyboard::Num5))
+    {
+        ExportBenchmark::Switch(16);
+        pathfindingAgent_CPU->threadsToUse = 16;
+    }
+    if (input->isPressed(sf::Keyboard::Num0))
+    {
+        automatic = !automatic;
+        std::cout << "Auto: " << automatic << std::endl;
+    }
+#pragma endregion
     //Map Navigation - by use of arrow keys
     #pragma region  MAP_NAVIGATION
     if (input->isPressed(sf::Keyboard::Right))
     {
         if (position.x != pmm.xDimension - 1)
         {
-            addViewCenter = sf::Vector2f(1000, 0);
+            addViewCenter += sf::Vector2f(1000, 0);
             position.x = position.x + 1;
             UpdateObjects(position, &pmm, &rectDraw);
         }
@@ -125,7 +171,7 @@ void PathfindingVisualisation::HandleInput()
     {
         if (position.x != 0)
         {
-            addViewCenter = sf::Vector2f(-1000, 0);
+            addViewCenter += sf::Vector2f(-1000, 0);
             position.x = position.x - 1;
             UpdateObjects(position, &pmm, &rectDraw);
         }
@@ -135,7 +181,7 @@ void PathfindingVisualisation::HandleInput()
     {
         if (position.y != pmm.yDimension - 1)
         {
-            addViewCenter = sf::Vector2f(0, 1000);
+            addViewCenter += sf::Vector2f(0, 1000);
             position.y = position.y + 1;
             UpdateObjects(position, &pmm, &rectDraw);
         }
@@ -145,7 +191,7 @@ void PathfindingVisualisation::HandleInput()
     {
         if (position.y != 0)
         {
-            addViewCenter = sf::Vector2f(0, -1000);
+            addViewCenter += sf::Vector2f(0, -1000);
             position.y = position.y - 1;
             UpdateObjects(position, &pmm, &rectDraw);
         }
@@ -169,7 +215,7 @@ void PathfindingVisualisation::HandleInput()
         startSet = 1; 
         toggle = 1;
     }    
-    if (input->isRightMouseDown())
+    if (input->isRightMouseDown() || automatic)
     {
         int roomOffsetX = window->getSize().x * position.x;
         int roomOffsetY = window->getSize().y * position.y;
@@ -186,7 +232,9 @@ void PathfindingVisualisation::HandleInput()
     {
         editMap = !editMap;
     }
-    #pragma endregion
+#pragma endregion
+
+
 }
 
 void PathfindingVisualisation::Render()

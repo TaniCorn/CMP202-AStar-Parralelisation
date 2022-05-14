@@ -1,6 +1,7 @@
 //////////
 //////////A Star Pathfinding CPU files //Derived from CMP201 Project A* Segmented.
-//////////This version of A* is a parallelised version of the previous CMP201 project, with many fixes to the original code and improvements.
+//////////This version of A* is a parallelised version of the previous CMP201 project, with many fixes to the original code and improvements. Having done this 'Segmented' version of A* I have heard of bidirectional A*. I would like to develop that as that is probably much more idea for a graph based system/one where the 'Route' nodes cannot be supplied. Aka a small room.
+// ////// This segmented version is ideal for many 'Rooms' that are traversable. Not so much for 1 grid map full of obstacles - it will simply work as normal then(slighlty slower for preliminary checks)
 //////////Written by Tanapat Somrid 
 /////////Starting 19/04/2022
 //////// Most Recent Update 07/05/2022
@@ -180,9 +181,10 @@ private:
 	/// <param name="endNode"></param>
 	/// <returns></returns>
 	bool DefaultAStar(Node* startNode, Node* endNode);
-
 	void CheckNeighbours(Node* node, Node* targetNode, std::set<Node*, ReverseComparator>* open, std::set<Node*>* closed);
-	
+	//bool DefaultAStar(Node* startNode, Node* endNode, int threads);
+	//void CheckNeighbours(Node* node, int neighbourNum, Node* targetNode, std::set<Node*, ReverseComparator>* open, std::set<Node*>* closed);
+	//void TestCheck(int i);
 
 	/// <summary>
 	/// Find the correct route nodes to use for pathfinding through the given rooms
@@ -191,5 +193,168 @@ private:
 	/// <returns></returns>
 	Node* FindRouteNode(std::stack<RoomStruct*>& mapRoute);
 };
+
+
+#include <iostream>
+#include <fstream>
+
+struct ExportData{
+	std::string areaName;
+	float timings;
+};
+class ExportBenchmark {
+public:
+	static void AddBenchmarkingInfo(ExportData ed) {
+		if (current->size() >= 1600)
+		{
+			std::cout << "1600 threads reached. Switch to next threads\n";
+			return;
+		}
+		current->push_back(ed);
+	}
+	static void ExportBenchmarkingInfo() {
+		Exporting("Benchmarking1.txt", data, 1);
+		Exporting("Benchmarking2.txt", data2, 2);
+		Exporting("Benchmarking4.txt", data4, 4);
+		Exporting("Benchmarking8.txt", data8, 8);
+		Exporting("Benchmarking16.txt", data16, 16);
+	
+		std::cout << "Data Exported \n";
+	}
+	static void Switch(int i) {
+		switch (i)
+		{
+		case 1:
+			current = &data;
+			break;
+		case 2:		
+			current = &data2;
+			break;
+		case 4:		
+			current = &data4;
+			break;
+		case 8:		
+			current = &data8;
+			break;
+		case 16:
+			current = &data16;
+			break;
+		default:
+			return;
+			break;
+		}
+		std::cout << "NOW USING " << i << " THREADS \n";
+	}
+	static std::vector<ExportData>* current;
+	static std::vector<ExportData> data;
+	static std::vector<ExportData> data2;
+	static std::vector<ExportData> data4;
+	static std::vector<ExportData> data8;
+	static std::vector<ExportData> data16;
+private:
+	static void Exporting(std::string fileName, std::vector<ExportData> dataSet, int threads) {
+		if (dataSet.empty())
+		{
+			return;
+		}
+		std::ofstream file;
+		file.open(fileName);
+		file << threads << "\n";
+		for (auto da : dataSet) {
+
+			file << da.areaName << "," << da.timings << "\n";
+		}
+		file.close();
+	}
+};
+
+
+////WARNING: This class with the implementation of it in DefaultAStar has a deadlock problem. The only way I can think to solve it is with a semaphore.
+//class ThreadPool
+//{
+//public:
+//	std::mutex taskLock;
+//	std::condition_variable condVar;
+//	bool finish;
+//	std::queue <std::function <void(void)>> tasks;
+//	std::vector <std::thread> workerThreads;
+//	bool completedSection = true;
+//	bool completedCheck = true;
+//
+//	ThreadPool(int threads) : finish(false)
+//	{
+//		// Create the specified number of threads
+//		workerThreads.reserve(threads);
+//		for (int i = 0; i < threads; ++i)
+//			workerThreads.emplace_back(std::bind(&ThreadPool::threadEntry, this, i));
+//	}
+//
+//	~ThreadPool()
+//	{
+//		{
+//			// Unblock any threads and tell them to stop
+//			std::unique_lock <std::mutex> l(taskLock);
+//
+//			finish = true;
+//			condVar.notify_all();
+//		}
+//
+//		// Wait for all threads to stop
+//		for (auto& thread : workerThreads)
+//			thread.join();
+//	}
+//
+//	void doJob(std::function <void(void)> func)
+//	{
+//		// Place a job on the queu and unblock a thread
+//		std::unique_lock <std::mutex> l(taskLock);
+//		completedSection = false;
+//		completedCheck = false;
+//		tasks.emplace(std::move(func));
+//		condVar.notify_one();
+//	}
+//
+//private:
+//
+//	void threadEntry(int i)
+//	{
+//		std::function <void(void)> job;
+//
+//		while (true)
+//		{
+//			bool completeTasks = completedCheck;
+//			{
+//				std::unique_lock <std::mutex> lock(taskLock);
+//
+//				while (!finish && tasks.empty())
+//					condVar.wait(lock);
+//
+//				if (tasks.empty())
+//				{
+//					// No jobs to do and we are shutting down
+//					return;
+//				}
+//				job = std::move(tasks.front());
+//				tasks.pop();
+//				if (tasks.empty())
+//				{
+//					completedCheck = true;
+//					completeTasks = true;
+//				}
+//
+//			}
+//
+//			// Do the job without holding any locks
+//			job();
+//			if (completedCheck && completeTasks)
+//			{
+//				completedSection = true;
+//			}
+//		}
+//
+//	}
+//
+//
+//};
 
 #endif // !A_STAR_PATHFINDINGCPU_H
