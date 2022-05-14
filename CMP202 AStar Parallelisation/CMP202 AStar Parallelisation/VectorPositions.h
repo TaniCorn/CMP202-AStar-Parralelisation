@@ -61,14 +61,35 @@ public:
 /// The EUCLIDEAN distance from this vector and the given coordinates (x and y)
 /// </summary>
 /// <returns>EUCLIDEAN DISTANCE</returns>
-	int DistanceFrom(T x, T y) { return sqrt((abs(x - this->x) * abs(x - this->x)) + (abs(y - this->y) * abs(y - this->y))); }
+	//int DistanceFrom(T x, T y) { return sqrt((abs(x - this->x) * abs(x - this->x)) + (abs(y - this->y) * abs(y - this->y))); }
+	///// <summary>
+	///// The EUCLIDEAN distance from this vector and the given vector
+	///// </summary>
+	///// <returns>EUCLIDEAN DISTANCE</returns>
+	//float DistanceFrom(const Vector2<T>& pos) {
+	//	int xl = abs(pos.x - x); int yl = abs(pos.y - y);
+	//	float sq = sqrt(abs(xl * xl) + abs(yl * yl));
+	//	return sq;
+	//}
+	///// <summary>
+	///// The EUCLIDEAN distance between two given vectors
+	///// <para> From vector A to vector B</para>
+	///// </summary>
+	///// <param name="Vector A"></param>
+	///// <param name="Vector B"></param>
+	///// <returns>EUCLIDEAN DISTANCE</returns>
+	//static float DistanceBetween(const Vector2& a, const Vector2& b) {
+	//	int x = abs(b.x - a.x); int y = abs(b.y - a.y);
+	//	float sq = sqrt(abs(x * x) + abs(y * y));
+	//	return sq;
+	//}	
 	/// <summary>
 	/// The EUCLIDEAN distance from this vector and the given vector
 	/// </summary>
 	/// <returns>EUCLIDEAN DISTANCE</returns>
-	int DistanceFrom(const Vector2<T>& pos) {
-		int x = abs(pos.x - x); int y = abs(pos.y - y);
-		int sq = sqrt(abs(x * x) + abs(y * y));
+	float DistanceFrom(const Vector2<T>& pos) {
+		int xl = abs(pos.x - x); int yl = abs(pos.y - y);
+		float sq = sqrt((xl*xl) + (yl * yl));
 		return sq;
 	}
 	/// <summary>
@@ -78,9 +99,9 @@ public:
 	/// <param name="Vector A"></param>
 	/// <param name="Vector B"></param>
 	/// <returns>EUCLIDEAN DISTANCE</returns>
-	static int DistanceBetween(const Vector2& a, const Vector2& b) {
+	static float DistanceBetween(const Vector2& a, const Vector2& b) {
 		int x = abs(b.x - a.x); int y = abs(b.y - a.y);
-		int sq = sqrt(abs(x * x) + abs(y * y));
+		float sq = sqrt((x * x) + (y * y));
 		return sq;
 	}
 #pragma endregion

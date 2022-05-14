@@ -27,13 +27,10 @@
     <ClCompile Include="Source.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="A_Star_Pathfinding.cpp">
-      <Filter>Source Files\Pathfinding</Filter>
-    </ClCompile>
     <ClCompile Include="Node.cpp">
       <Filter>Source Files\Pathfinding</Filter>
     </ClCompile>
-    <ClCompile Include="PathfindingMap.cpp">
+    <ClCompile Include="Rooms.cpp">
       <Filter>Source Files\Pathfinding</Filter>
     </ClCompile>
     <ClCompile Include="ProceduralMapManager.cpp">
@@ -54,18 +51,18 @@
     <ClCompile Include="PathfindingVisualisation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="A_Star_PathfindingCPU.cpp">
+      <Filter>Source Files\Pathfinding</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CustomLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="A_Star_Pathfinding.h">
-      <Filter>Source Files\Pathfinding</Filter>
-    </ClInclude>
     <ClInclude Include="Node.h">
       <Filter>Source Files\Pathfinding</Filter>
     </ClInclude>
-    <ClInclude Include="PathfindingMap.h">
+    <ClInclude Include="Rooms.h">
       <Filter>Source Files\Pathfinding</Filter>
     </ClInclude>
     <ClInclude Include="ProceduralMapManager.h">
@@ -85,6 +82,9 @@
     </ClInclude>
     <ClInclude Include="PathfindingVisualisation.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="A_Star_PathfindingCPU.h">
+      <Filter>Source Files\Pathfinding</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
