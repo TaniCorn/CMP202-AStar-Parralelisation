@@ -6,26 +6,27 @@ C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursewor
               T=int
           ]
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(36,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(53,96): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+  PathfindingVisualisation.cpp
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(18,43): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(211,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(212,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(224,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(225,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(253,109): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
-              _Rep=__int64
+              T=float
           ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(223,91): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(253,76): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
-              _Rep=__int64
+              T=float
           ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(273,98): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(382,97): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
+  Source.cpp
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Source.cpp(88,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Generating Code...
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(75): warning C4715: 'Base_A_Star_PathfindingCPU::GetNodeFromPosition': not all control paths return a value
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/PROFILE' specification
 A_Star_PathfindingCPU.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:REF' specification

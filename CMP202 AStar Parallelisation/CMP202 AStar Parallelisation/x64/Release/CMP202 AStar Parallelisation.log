@@ -6,29 +6,9 @@ C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursewor
               T=int
           ]
 C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(36,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(53,96): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(223,91): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(273,98): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
-C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(382,97): warning C4244: '=': conversion from '_Rep' to 'float', possible loss of data
-          with
-          [
-              _Rep=__int64
-          ]
   Generating code
-  5 of 1927 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
-    3 functions were new in current compilation
-    3 functions had inline decision re-evaluated but remain unchanged
+  73 of 1901 functions ( 3.8%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    72 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   CMP202 AStar Parallelisation.vcxproj -> C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\x64\Release\CMP202 AStar Parallelisation.exe

@@ -4,11 +4,11 @@
 // ////// This segmented version is ideal for many 'Rooms' that are traversable. Not so much for 1 grid map full of obstacles - it will simply work as normal then(slighlty slower for preliminary checks)
 //////////Written by Tanapat Somrid 
 /////////Starting 19/04/2022
-//////// Most Recent Update 07/05/2022
-//////// Most Recent change: Cleanup, removed dependency on old files, added FindPath(...) function to allow normal ints rather than Vector2<int>
+//////// Most Recent Update 14/05/2022
+//////// Most Recent change: Final Sprint changes
 //////// 
 //Current Bug List:
-//Will cause a GetParent() Error - When setting target node to a 'RouteNode'
+//Will cause a GetParent() Error - When setting a Route Node as the Target Node
 
 #pragma once
 

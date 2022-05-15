@@ -23,7 +23,7 @@ std::cout << "Main thread exiting"*/;
 #pragma region BASE_ASTAR
 bool Base_A_Star_PathfindingCPU::SetUpStartAndEndNodes(Vector2<int> startPos, Vector2<int> endPos)
 {
-	std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+	//std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 	//Run Async functions to find node from positions
 	std::future<Node*> startNode_fut = std::async(std::launch::async, &Base_A_Star_PathfindingCPU::GetNodeFromPosition,this, startPos);
 	std::future<Node*> endNode_fut = std::async(std::launch::async, &Base_A_Star_PathfindingCPU::GetNodeFromPosition,this, endPos);
@@ -47,11 +47,11 @@ bool Base_A_Star_PathfindingCPU::SetUpStartAndEndNodes(Vector2<int> startPos, Ve
 		if (IsNodeInRoom(*var, Vector2<int>(startNode->xPosition, startNode->yPosition)))
 		{
 			startRoom = var;
-			std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now(); 
-			auto ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
-			//std::cout << "A_Star_PathfindingCPU::SetUpStartAndEndNodes() takes - " << ms << "ms" << std::endl;
-			ExportData ed; ed.areaName = "A_Star_PathfindingCPU::SetUpStartAndEndNodes()"; ed.timings = ms;
-			ExportBenchmark::AddBenchmarkingInfo(ed);
+			//std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now(); 
+			//auto ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+			////std::cout << "A_Star_PathfindingCPU::SetUpStartAndEndNodes() takes - " << ms << "ms" << std::endl;
+			//ExportData ed; ed.areaName = "A_Star_PathfindingCPU::SetUpStartAndEndNodes()"; ed.timings = ms;
+			//ExportBenchmark::AddBenchmarkingInfo(ed);
 			return true;
 		}
 	}
@@ -202,7 +202,7 @@ std::queue<Node*> A_Star_Pathfinding_Defined_SegmentedCPU::FindRouteNodePaths(st
 {
 	//Using the map route, find the corrseponding 'route' nodes that would connect the rooms together
 	//This function is not parallisable, but a child function is
-	std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+	//std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 
 	std::queue<Node*> temporaryTargets;//'Route'.teleportTo nodes to travel to, on the way towards main end node
 	temporaryTargets.push(root);
@@ -217,11 +217,11 @@ std::queue<Node*> A_Star_Pathfinding_Defined_SegmentedCPU::FindRouteNodePaths(st
 		}
 		temporaryTargets.push(rn);
 	}
-	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-	auto ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
-	//std::cout << "A_Star_PathfindingCPU::FindRouteNodePaths() takes - " << ms << "ms" << std::endl;
-	ExportData ed; ed.areaName = "A_Star_PathfindingCPU::FindRouteNodePaths()"; ed.timings = ms;
-	ExportBenchmark::AddBenchmarkingInfo(ed);
+	//std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+	//auto ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+	////std::cout << "A_Star_PathfindingCPU::FindRouteNodePaths() takes - " << ms << "ms" << std::endl;
+	//ExportData ed; ed.areaName = "A_Star_PathfindingCPU::FindRouteNodePaths()"; ed.timings = ms;
+	//ExportBenchmark::AddBenchmarkingInfo(ed);
 	return temporaryTargets;
 }
 std::stack<RoomStruct*> A_Star_Pathfinding_Defined_SegmentedCPU::BruteForcePathfindMaps()
@@ -230,7 +230,7 @@ std::stack<RoomStruct*> A_Star_Pathfinding_Defined_SegmentedCPU::BruteForcePathf
 	
 	//We will start searching from our start room until we have a path from start to end. 
 	//This function is partially parallisable
-	std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+	//std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 
 	std::stack<RoomStruct*> mapRoute;//Rooms we need to go through
 	RoomStruct* currentRoomToSearch = startRoom;//Our current room that we're in
@@ -267,11 +267,11 @@ std::stack<RoomStruct*> A_Star_Pathfinding_Defined_SegmentedCPU::BruteForcePathf
 					route = route->GetParentRoom();
 				}
 				mapRoute.push(route);
-				std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-				auto ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
-				//std::cout << "A_Star_PathfindingCPU::BruteForcePathfindMaps() takes - " << ms << "ms" << std::endl;
-				ExportData ed; ed.areaName = "A_Star_PathfindingCPU::BruteForcePathfindMaps()"; ed.timings = ms;
-				ExportBenchmark::AddBenchmarkingInfo(ed);
+				//std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+				//auto ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+				////std::cout << "A_Star_PathfindingCPU::BruteForcePathfindMaps() takes - " << ms << "ms" << std::endl;
+				//ExportData ed; ed.areaName = "A_Star_PathfindingCPU::BruteForcePathfindMaps()"; ed.timings = ms;
+				//ExportBenchmark::AddBenchmarkingInfo(ed);
 				return mapRoute;
 			};
 
@@ -322,7 +322,7 @@ bool A_Star_Pathfinding_Defined_SegmentedCPU::MultiThreadedPathfinding(std::queu
 	std::vector<std::thread> threads;
 	std::mutex lock;
 	bool once = false;
-	std::chrono::steady_clock::time_point start;
+	//std::chrono::steady_clock::time_point start;
 
 	for (int numberOfThreads = 0; numberOfThreads < threadsToUse; numberOfThreads++)
 	{
@@ -366,21 +366,20 @@ bool A_Star_Pathfinding_Defined_SegmentedCPU::MultiThreadedPathfinding(std::queu
 			}));
 	}
 
-	if (!once)
-	{
-		once = true;
-		start = std::chrono::steady_clock::now();
+	//if (!once)
+	//{
+	//	once = true;
+	//	start = std::chrono::steady_clock::now();
 
-	}
+	//}
 	std::for_each(threads.begin(), threads.end(), [](std::thread& t)
 		{
 			t.join();
 		});
-	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-	auto ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
-	std::cout << "A_Star_PathfindingCPU::MultiThreadedPathfinding() takes - " << ms << "ms" << std::endl;
-	ExportData ed; ed.areaName = "A_Star_PathfindingCPU::MultiThreadedPathfinding()"; ed.timings = ms;
-	ExportBenchmark::AddBenchmarkingInfo(ed);
+	//std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+	//auto ms = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+	//ExportData ed; ed.areaName = "A_Star_PathfindingCPU::MultiThreadedPathfinding()"; ed.timings = ms;
+	//ExportBenchmark::AddBenchmarkingInfo(ed);
 	//If one pathfinding path failed, then we return false
 	if (successful)
 	{

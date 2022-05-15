@@ -1,0 +1,80 @@
+﻿  A_Star_PathfindingCPU.cpp
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(36,53): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\A_Star_PathfindingCPU.cpp(36,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+  CellularAutomata.cpp
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Input.cpp
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Input.cpp(50,20): warning C4018: '<': signed/unsigned mismatch
+  Node.cpp
+  Rooms.cpp
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  PathfindingVisualisation.cpp
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(18,43): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(211,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(212,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(224,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(225,23): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(242,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(253,109): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\PathfindingVisualisation.cpp(253,76): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  ProceduralMapManager.cpp
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\ProceduralMapManager.cpp(53,14): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+  RandomBase10.cpp
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Source.cpp
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\RandomBase10.h(19,29): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\CMP202 AStar Parallelisation\Source.cpp(88,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  VectorPositions.cpp
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: static class sf::RenderStates const sf::RenderStates::Default" (__imp_?Default@RenderStates@sf@@2V12@B)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: static class sf::Color const sf::Color::White" (__imp_?White@Color@sf@@2V12@B)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __thiscall sf::Transformable::setPosition(float,float)" (__imp_?setPosition@Transformable@sf@@QAEXMM@Z)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: class sf::Vector2<float> const & __thiscall sf::View::getCenter(void)const " (__imp_?getCenter@View@sf@@QBEABV?$Vector2@M@2@XZ)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __thiscall sf::View::setCenter(class sf::Vector2<float> const &)" (__imp_?setCenter@View@sf@@QAEXABV?$Vector2@M@2@@Z)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: static class sf::Color const sf::Color::Red" (__imp_?Red@Color@sf@@2V12@B)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: static class sf::Color const sf::Color::Black" (__imp_?Black@Color@sf@@2V12@B)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: static class sf::Color const sf::Color::Yellow" (__imp_?Yellow@Color@sf@@2V12@B)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __thiscall sf::RenderTarget::draw(class sf::Drawable const &,class sf::RenderStates const &)" (__imp_?draw@RenderTarget@sf@@QAEXABVDrawable@2@ABVRenderStates@2@@Z)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) private: virtual void __thiscall sf::Shape::draw(class sf::RenderTarget &,class sf::RenderStates)const " (__imp_?draw@Shape@sf@@EBEXAAVRenderTarget@2@VRenderStates@2@@Z)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __thiscall sf::Shape::setOutlineThickness(float)" (__imp_?setOutlineThickness@Shape@sf@@QAEXM@Z)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __thiscall sf::Shape::setOutlineColor(class sf::Color const &)" (__imp_?setOutlineColor@Shape@sf@@QAEXABVColor@2@@Z)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __thiscall sf::Shape::setFillColor(class sf::Color const &)" (__imp_?setFillColor@Shape@sf@@QAEXABVColor@2@@Z)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual class sf::Vector2<float> __thiscall sf::RectangleShape::getPoint(unsigned int)const " (__imp_?getPoint@RectangleShape@sf@@UBE?AV?$Vector2@M@2@I@Z)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual unsigned int __thiscall sf::RectangleShape::getPointCount(void)const " (__imp_?getPointCount@RectangleShape@sf@@UBEIXZ)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __thiscall sf::RectangleShape::setSize(class sf::Vector2<float> const &)" (__imp_?setSize@RectangleShape@sf@@QAEXABV?$Vector2@M@2@@Z)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::RectangleShape::RectangleShape(class sf::Vector2<float> const &)" (__imp_??0RectangleShape@sf@@QAE@ABV?$Vector2@M@1@@Z)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: static class sf::Color const sf::Color::Blue" (__imp_?Blue@Color@sf@@2V12@B)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::RectangleShape::RectangleShape(class sf::RectangleShape const &)" (__imp_??0RectangleShape@sf@@QAE@ABV01@@Z)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::RectangleShape::RectangleShape(class sf::RectangleShape &&)" (__imp_??0RectangleShape@sf@@QAE@$$QAV01@@Z)
+PathfindingVisualisation.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __thiscall sf::RectangleShape::~RectangleShape(void)" (__imp_??1RectangleShape@sf@@UAE@XZ)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::View::View(void)" (__imp_??0View@sf@@QAE@XZ)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::View::View(class sf::Rect<float> const &)" (__imp_??0View@sf@@QAE@ABV?$Rect@M@1@@Z)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual __thiscall sf::RenderWindow::~RenderWindow(void)" (__imp_??1RenderWindow@sf@@UAE@XZ)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::RenderWindow::RenderWindow(class sf::VideoMode,class sf::String const &,unsigned int,struct sf::ContextSettings const &)" (__imp_??0RenderWindow@sf@@QAE@VVideoMode@1@ABVString@1@IABUContextSettings@1@@Z)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QAE@EEEE@Z)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __thiscall sf::Window::display(void)" (__imp_?display@Window@sf@@QAEXXZ)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: bool __thiscall sf::Window::pollEvent(class sf::Event &)" (__imp_?pollEvent@Window@sf@@QAE_NAAVEvent@2@@Z)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: bool __thiscall sf::Window::isOpen(void)const " (__imp_?isOpen@Window@sf@@QBE_NXZ)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __thiscall sf::Window::close(void)" (__imp_?close@Window@sf@@QAEXXZ)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __thiscall sf::RenderTarget::setView(class sf::View const &)" (__imp_?setView@RenderTarget@sf@@QAEXABVView@2@@Z)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: void __thiscall sf::RenderTarget::clear(class sf::Color const &)" (__imp_?clear@RenderTarget@sf@@QAEXABVColor@2@@Z)
+    Hint on symbols that are defined and could potentially match:
+      "__declspec(dllimport) public: void __thiscall std::basic_ios<char,struct std::char_traits<char> >::clear(int,bool)" (__imp_?clear@?$basic_ios@DU?$char_traits@D@std@@@std@@QAEXH_N@Z)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QAE@PBDABVlocale@std@@@Z)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::VideoMode::VideoMode(unsigned int,unsigned int,unsigned int)" (__imp_??0VideoMode@sf@@QAE@III@Z)
+Source.obj : error LNK2001: unresolved external symbol "__declspec(dllimport) public: __thiscall sf::String::~String(void)" (__imp_??1String@sf@@QAE@XZ)
+C:\Users\Tanap\Documents\MyDocuments\Abertay Work\2021_2022(Y2)\CMP202\Coursework\CMP202-AStar-Parralelisation\CMP202 AStar Parallelisation\Release\CMP202 AStar Parallelisation.exe : fatal error LNK1120: 35 unresolved externals
